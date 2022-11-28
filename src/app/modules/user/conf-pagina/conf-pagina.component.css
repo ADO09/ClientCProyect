@@ -1,0 +1,20 @@
+img {
+    margin: 10px;
+    width: 470px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+img:hover{
+
+    margin: 2px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.contenedor1{
+    border: 1.5px solid black;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}

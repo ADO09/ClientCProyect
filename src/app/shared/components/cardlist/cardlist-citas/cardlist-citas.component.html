@@ -1,0 +1,434 @@
+<ng-container *ngIf="condUser else cardListC">
+    <div class="row">
+        <div>
+            <div class="card card-margin">
+                <div class="card-header no-border">
+                    <h5 class="card-title">CITA #{{numCitas}}</h5>
+                </div>
+
+
+                <div class="card-body pt-0">
+                    <div class="widget-49">
+                        <div class="widget-49-title-wrapper">
+                            <div class="widget-49-date-primary">
+                                <ng-container [ngSwitch]="data.estatus" >
+                                                                    
+                                    <span *ngSwitchCase="'1'" class="widget-49-date-day" style="color: rgb(37, 165, 94);">{{data.fecha! | date:'d'}}</span>
+                                    <span *ngSwitchCase="'1'" class="widget-49-date-month" style="color: rgb(37, 165, 94);">{{data.fecha | date:'MMM'}}</span>
+                                
+                                
+                                    <span *ngSwitchCase="'2'"  class="widget-49-date-day" style="color: red;" >{{data.fecha! | date:'d'}}</span>
+                                    <span *ngSwitchCase="'2'" class="widget-49-date-month" style="color: red;"  >{{data.fecha | date:'MMM'}}</span>
+                                
+                                    <span *ngSwitchCase="'3'"  class="widget-49-date-day" style="color: rgb(241, 239, 71);" >{{data.fecha! | date:'d'}}</span>
+                                    <span *ngSwitchCase="'3'" class="widget-49-date-month" style="color: rgb(219, 217, 98);">{{data.fecha | date:'MMM'}}</span>
+                                
+          
+
+                            </ng-container>
+                            </div>
+                            <div class="widget-49-meeting-info">
+                                <span class="widget-49-pro-title">Tipo Consulta: {{data.tipo_consulta}}</span>
+                                <span class="widget-49-pro-title">Direccion: {{data.direccion}}</span>
+                                <span class="widget-30-meeting-time">Hora: {{((data.fecha|date:'yyyy-MM-dd' +' ' + data.hora)| date:'shortTime')}}</span>
+                            </div>
+                        </div>
+                        <ol class="widget-49-meeting-points" style="font-size: 16px;">
+                            <h5 style="color: #4e73e5;">Datos de paciente</h5>
+                            <li class="widget-49-meeting-item"><span> Nombre: {{data.nombre}} {{data.apellido1}}</span>
+                            </li>
+                            <li class="widget-49-meeting-item"><span>curp: {{data.curp}}</span></li>
+                            <hr>
+                            <h5 style="color: #4e73e5;">Descripcion de cita</h5>
+                            <li class="widget-49-meeting-item"><span>Descripcion: {{data.descripcion}}</span></li>
+                            <!-- --------------------- -->
+                            <li class="widget-49-meeting-item"><span>Costo: {{data.costo}}</span></li>
+                            <!-- --------------------- -->
+                            <hr>
+                            <ng-container *ngIf="PlanData else noasignPlan" >
+                                <h5 style="color: #4e73e5;">Plan de rehabilitacion</h5>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.nombre_plan}}</span></li>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.descripcion_plan}}</span></li>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.tiempo}}</span></li>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.diagnostico}}</span></li>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.nivelDolor}}</span></li>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.enfermedades}}</span></li>
+                            </ng-container >
+
+                            <ng-template #noasignPlan>
+                                <h5 style="color: #4e73e5;">Plan de rehabilitacion</h5>
+                                <li class="widget-49-meeting-item"><span>NO ASIGNADO</span></li>
+                            </ng-template>
+   
+                        </ol>
+                        <!-- <ng-container *ngIf="data.estatus === '1' else caduca2">
+
+                            <div class="widget-49-meeting-action">
+                                 <a class="btn btn-sm btn-flash-border-primary" 
+                                    (click)="citaStatus()">Finalizar cita</a>
+                                <a class="btn btn-sm btn-flash-border-primary" (click)="ModalOpenFisio(contenido)"
+                                    (click)="datos(data)">Edit</a>
+                                   
+                            </div>
+                        </ng-container>
+                        <ng-template #caduca2>
+                            <div class="widget-49-meeting-action">
+                                <a  class="btn btn-danger"  (click)="elmCita(data.id_cita)" >ELIMINAR</a>
+                            </div>
+                        </ng-template> -->
+
+                        <ng-container [ngSwitch]="data.estatus" >
+                            <div class="widget-49-meeting-action" *ngSwitchCase="'1'">
+                                <a class="btn btn-sm btn-flash-border-primary" (click)="citaStatus('2','4')">Finalizar cita</a>
+                            <a class="btn btn-sm btn-flash-border-primary" (click)="ModalOpenFisio(contenido)"
+                                (click)="datos(data)">Edit</a>
+                            </div>  
+                            <div class="widget-49-meeting-action" *ngSwitchCase="'2'">
+                                <a  class="btn btn-danger"  (click)="citaStatus('5','3')" >ELIMINAR</a>
+                            </div>
+
+                            <div class="widget-49-meeting-action" *ngSwitchCase="'3'">
+                                <a  class="btn btn-info" style="margin-right: 5px;"   (click)="ModalOpenFisio(contenido)" >Consultar</a>
+                                 <a  class="btn btn-warning"    (click)="citaStatus('4','1')" >Rechazar</a>
+                                 <br>
+                                 <a  class="btn btn-success" style="margin-top:2px; " (click)="citaStatus('1','2')"  >Aceptar</a>
+                               
+                            </div>
+                        </ng-container>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+
+
+<!-- MODAL FISIO -->
+
+<ng-template #contenido let-modalF>
+    <div aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">EDIT CITA</h5>
+                    <button type="button" class="btn btn-secondary" (click)="modalF.dismiss()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- ,costo.value -->
+                    <form (ngSubmit)="subupdateCit(fecha.value,hora.value,descripcion.value,direccion.value,tipoconsulta.value,id_plan.value)" errorTailor
+                        class="form-submitted">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Fecha:</label>
+
+                            <input type="date" class="form-control" name="fecha" [value]="data.fecha|date:'yyyy-MM-dd'"
+                                #fecha>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Hora:</label>
+
+                            <input type="time" class="form-control" id="recipient-name" name="time"
+                                [value]="((data.fecha|date:'yyyy-MM-dd' +' ' + data.hora)| date:'HH:mm')" #hora>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Descripcion:</label>
+                            <textarea class="form-control" id="message-text" #descripcion
+                                [value]="data.descripcion"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Direccion:</label>
+                            <input type="text" class="form-control" id="recipient-name" value="{{data.direccion}}"
+                                #direccion>
+                        </div>
+
+                        <!-- ---------------------------- -->
+                      
+                        <!-- ---------------------------- -->
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Tipo de consulta:</label>
+                            <input type="text" class="form-control" id="recipient-name" #tipoconsulta
+                                [value]="data.tipo_consulta">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">AGENDAR PLAN:</label>
+
+                            <select class="form-control" #id_plan  >
+                                <option >---Select a plan---</option>
+                                <option  *ngFor="let plan of dataPlan" [value]="plan.id_plan" >
+                                <p>Nombre:</p>
+                                {{ plan.nombre_plan}}
+                                <br>
+                                <p>Descripcion:</p>
+                                {{plan.descripcion_plan}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Costo de consulta:</label>
+                            <input type="text" class="form-control" id="recipient-name" value="{{data.costo}}"
+                                #costo disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nombre de paciente:</label>
+                            <input type="text" class="form-control" id="recipient-name" [value]="data.nombre" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Curp de paciente:</label>
+                            <input type="text" class="form-control" id="recipient-name" [value]="data.curp" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Mirar perfil de paciente:</label>
+                            <input type="button" class="form-control" id="ButonPerfil" value="Perfil"  [routerLink]="perfilPaciente + data.id_cliente" (click)="modalF.close()">
+                        </div>
+
+                     
+                        <ng-container *ngIf="data.estatus === '1' else consulta">
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" (click)="modalF.close()"
+                                    data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary"  [disabled]="!fecha.value|| !hora.value || descripcion.value == '' || !direccion.value || !tipoconsulta.value || !id_plan.value " >Editar</button>
+                            </div>
+                        </ng-container>
+                     
+                        <ng-template #consulta >
+                            <div class="modal-footer">
+                               
+                                <button type="button" class="btn btn-secondary" (click)="modalF.close()"
+                                    data-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="!fecha.value|| !hora.value || !descripcion.value || !direccion.value || !tipoconsulta.value || !id_plan.value " >Editar cita</button>
+                                    <button type="button" class="btn btn-warning"  (click)="citaStatus('4','1')" >Rechazar</button>
+                                    <button type="button" class="btn btn-success"  (click)="citaStatus('1','2')" >Aceptar</button>
+                            </div>
+                        </ng-template>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- -------------------------------------------------------------------------------->
+
+<ng-template #cardListC>
+    <div class="row">
+        <div>
+            <div class="card card-margin">
+                <div class="card-header no-border">
+                    <h5 class="card-title">CITA #{{numCitas}}</h5>
+                    <h5 *ngIf="dataC.estatus =='4'" style="color: rgb(153, 0, 0); margin-left: 5px;">RECHAZADA</h5>
+                </div>
+                <div class="card-body pt-0">
+                    <div class="widget-49">
+                        <div class="widget-49-title-wrapper">
+                            <div class="widget-49-date-primary">
+                                <ng-container [ngSwitch]="dataC.estatus" >
+                                                                    
+                                    <span *ngSwitchCase="'1'" class="widget-49-date-day" style="color: rgb(37, 165, 94);">{{dataC.fecha! | date:'d'}}</span>
+                                    <span *ngSwitchCase="'1'" class="widget-49-date-month" style="color: rgb(37, 165, 94);">{{dataC.fecha | date:'MMM'}}</span>
+                                
+                                
+                                    <span *ngSwitchCase="'2'"  class="widget-49-date-day" style="color: red;" >{{dataC.fecha! | date:'d'}}</span>
+                                    <span *ngSwitchCase="'2'" class="widget-49-date-month" style="color: red;"  >{{dataC.fecha | date:'MMM'}}</span>
+                                
+    
+                                    <span *ngSwitchCase="'3'"  class="widget-49-date-day" style="color: rgb(241, 239, 71);" >{{dataC.fecha! | date:'d'}}</span>
+                                    <span *ngSwitchCase="'3'" class="widget-49-date-month" style="color: rgb(219, 217, 98);">{{dataC.fecha | date:'MMM'}}</span>
+                                    
+                                    <span *ngSwitchCase="'4'"  class="widget-49-date-day" style="color: rgb(153, 0, 0);" >{{dataC.fecha! | date:'d'}}</span>
+                                    <span *ngSwitchCase="'4'" class="widget-49-date-month" style="color: rgb(153, 0, 0);">{{dataC.fecha | date:'MMM'}}</span>
+                                
+
+                            </ng-container>
+                            </div>
+                            <div class="widget-49-meeting-info">
+                                <span class="widget-49-pro-title">Tipo Consulta: {{dataC.tipo_consulta}}</span>
+                                <span class="widget-49-pro-title">Direccion: {{dataC.direccion}}</span>
+                                <span class="widget-30-meeting-time">Hora: {{((dataC.fecha|date:'yyyy-MM-dd' +' ' + dataC.hora)| date:'shortTime')}}</span>
+                            </div>
+                        </div>
+                        <ol class="widget-49-meeting-points" style="font-size: 16px;">
+                            <h5 style="color: #4e73e5;">Datos de fisioterapeuta</h5>
+                            <li class="widget-49-meeting-item"><span> Nombre: {{dataC.nombre}}
+                                    {{dataC.apellido1}}</span></li>
+                            <li class="widget-49-meeting-item"><span>RFC: {{dataC.RFC}}</span></li>
+                            <hr>
+                            <h5 style="color: #4e73e5;">Descripcion de cita</h5>
+                            <li class="widget-49-meeting-item"><span>Descripcion: {{dataC.descripcion}}</span></li>
+                            <li class="widget-49-meeting-item"><span>Costo: {{dataC.costo}}</span></li>
+                            <hr>
+                            <ng-container *ngIf="PlanData else noasignPlan" >
+                                <h5 style="color: #4e73e5;">Plan de rehabilitacion</h5>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.nombre_plan}}</span></li>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.descripcion_plan}}</span></li>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.tiempo}}</span></li>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.diagnostico}}</span></li>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.nivelDolor}}</span></li>
+                                <li class="widget-49-meeting-item"><span>{{PlanData.enfermedades}}</span></li>
+                                
+                            </ng-container >
+
+                            <ng-template #noasignPlan>
+                                <h5 style="color: #4e73e5;">Plan de rehabilitacion</h5>
+                                <li class="widget-49-meeting-item"><span>NO ASIGNADO</span></li>
+                            </ng-template>
+                        </ol>
+
+                        <ng-container [ngSwitch]="dataC.estatus" >
+                            <div class="widget-49-meeting-action" *ngSwitchCase="'1'">
+                                <a  class="btn btn-success" (click)="ModalOpenCliente(contenidoC)" >Consultar</a>
+                            </div>  
+                            <div class="widget-49-meeting-action" *ngSwitchCase="'2'">
+                                <a  class="btn btn-danger"  (click)="citaStatus('5','3')" >Eliminar</a>
+                            </div>
+
+                            <div class="widget-49-meeting-action" *ngSwitchCase="'3'">
+                                <a  class="btn btn-warning"  (click)="elmCita(dataC.id_cita)" >Cancelar solicitud</a>
+                                <ng-container *ngIf="PlanData">
+                                    <a  class="btn btn-success"  style="margin-top: 4px;" (click)="citaStatus('1','2')" >Aceptar cambios</a>
+                                </ng-container>
+                            </div>
+
+                            <div class="widget-49-meeting-action" *ngSwitchCase="'4'">
+                                <a  class="btn btn-danger"  (click)="elmCita(dataC.id_cita)" >Eliminar solicitud rechazada</a>
+                            </div>
+                        </ng-container>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+
+<ng-template #contenidoC let-modalC>
+    <div aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CONSULT CITA</h5>
+                    <button type="button" class="btn btn-secondary" (click)="modalC.dismiss()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form 
+                        class="form-submitted">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Fecha:</label>
+
+                            <input type="date" class="form-control" name="fecha" [value]="dataC.fecha|date:'yyyy-MM-dd'"
+                                #fecha disabled>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Hora:</label>
+
+                            <input type="time" class="form-control" id="recipient-name" name="time"
+                                [value]="((dataC.fecha|date:'yyyy-MM-dd' +' ' + dataC.hora)| date:'HH:mm')" #hora disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Descripcion:</label>
+                            <textarea class="form-control" id="message-text" #descripcion
+                                [value]="dataC.descripcion" disabled></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Costo de consulta:</label>
+                            <input type="text" class="form-control" id="recipient-name" disabled value="{{dataC.costo}}"
+                                #costo>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Direccion:</label>
+                            <input type="text" class="form-control" id="recipient-name" value="{{dataC.direccion}}"
+                                #direccion disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Tipo de consulta:</label>
+                            <input type="text" class="form-control" id="recipient-name" #tipoconsulta
+                                [value]="dataC.tipo_consulta" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">PLAN:</label>
+
+                            <select class="form-control" #id_plan disabled  >
+                                <option >---Select a plan---</option>
+                                <option  *ngFor="let plan of dataPlan" [value]="plan.id_plan" >
+                                <p>Nombre:</p>
+                                 {{ plan.nombre_plan}}
+                                <br>
+                                <p>Descripcion:</p>
+                                {{plan.descripcion}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nombre de Fisioterapeuta</label>
+                            <input type="text" class="form-control" id="recipient-name" [value]="dataC.nombre" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">RFC de Fisioterapeuta:</label>
+                            <input type="text" class="form-control" id="recipient-name" [value]="dataC.RFC" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Mirar perfil del fisioterapeuta:</label>
+                            <input type="button" class="form-control" id="ButonPerfil" value="Perfil"  [routerLink]="perfilFisio + dataC.id_fisio" (click)="modalC.close()">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" (click)="modalC.close()"
+                                data-dismiss="modal">Close </button>
+                            
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+

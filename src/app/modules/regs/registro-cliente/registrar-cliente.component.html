@@ -1,0 +1,209 @@
+<!--<link rel="stylesheet" href="registrar-cliente.component.css" >-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<div  class="form-submitted">
+<form [formGroup]="formRegistroCliente" (ngSubmit)="subRegClient()" errorTailor>
+  
+  <div class="datosPersonales">
+      <h2>DATOS PERSONALES</h2>
+      <div class="input-group mb-3">
+        <!--<img src="./../../../assets/imagenes/nombre.png"  width="35" height="35" alt="..." />-->
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828439.png"  width="35" height="35" alt="..." /><label for="nombre" class="input-group-text">Nombre/s</label>
+          <input type="text"  class="form-control" id="nombre" formControlName="nombre"  />
+          <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
+          *ngIf="(fm['nombre'].dirty || fm['nombre'].touched) && fm['nombre'].errors">
+          <ng-container [ngSwitch]="fm['nombre'].value">
+            <ng-container *ngSwitchCase="''">El nombre es requerido</ng-container>
+            <ng-container *ngSwitchDefault >El nombre  es invalido!</ng-container>
+            </ng-container>
+        </small>
+      </div><br>
+
+      <!-- aria-describedby="emailHelp"  -->
+      <div class="input-group mb-3">
+          <!--<img src="./../../../assets/imagenes/apellidos.png"  width="35" height="35" alt="..." />-->
+        <img src="https://cdn-icons-png.flaticon.com/512/5037/5037232.png"  width="35" height="35" alt="..." /><label for="apellido1" class="input-group-text">Apellido 1</label>
+          <input type="text" class="form-control" id="apellido1" formControlName="apellido1"/>
+          <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
+          *ngIf="(fm['apellido1'].dirty || fm['apellido1'].touched) && fm['apellido1'].errors">
+          <ng-container [ngSwitch]="fm['apellido1'].value">
+            <ng-container *ngSwitchCase="''">El apellido1 es requerido</ng-container>
+            <ng-container *ngSwitchDefault >El apellido1  es invalido!</ng-container>
+            </ng-container>
+        </small>
+      </div><br>
+
+      <div class="input-group mb-3">
+          <!--<img src="./../../../assets/imagenes/apellidos.png"  width="35" height="35" alt="..." />-->
+        <img src="https://cdn-icons-png.flaticon.com/512/5037/5037232.png"  width="35" height="35" alt="..." /><label for="apellido2" class="input-group-text">Apellido 2</label>
+          <input type="text" class="form-control" id="apellido2" formControlName="apellido2"
+               />
+                 <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
+          *ngIf="(fm['apellido2'].dirty || fm['apellido2'].touched) && fm['apellido2'].errors">
+          <ng-container [ngSwitch]="fm['apellido2'].value">
+            <ng-container *ngSwitchCase="''">El apellido2 es requerido</ng-container>
+            <ng-container *ngSwitchDefault >El apellido2  es invalido!</ng-container>
+            </ng-container>
+        </small>
+          
+      </div><br>
+
+      <div class="input-group mb-3">
+          <!--<img src="./../../../assets/imagenes/edad.png"  width="35" height="35" alt="..." />-->
+        <img src="https://cdn-icons-png.flaticon.com/512/5025/5025680.png"  width="35" height="35" alt="..." /><label for="edad" class="input-group-text">Edad</label>
+          <input type="number" class="form-control" id="edad" formControlName="edad"  />
+          <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
+          *ngIf="(fm['edad'].dirty || fm['edad'].touched) && fm['edad'].errors">
+          <ng-container [ngSwitch]="fm['edad'].value">
+            <ng-container *ngSwitchCase="''">El edad es requerido</ng-container>
+            <ng-container *ngSwitchDefault >El edad  es invalido!</ng-container>
+            </ng-container>
+        </small>
+      </div><br>
+
+      <div class="input-group mb-3">
+          <!--<img src="./../../../assets/imagenes/email.png"  width="35" height="35" alt="..." />-->
+        <img src="https://cdn-icons-png.flaticon.com/512/3494/3494619.png"  width="35" height="35" alt="..." /><label for="Email1"class="input-group-text">Email</label>
+          <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" 
+              formControlName="correo" />
+          <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
+          *ngIf="(fm['correo'].dirty || fm['correo'].touched) && fm['correo'].errors">
+          <ng-container [ngSwitch]="fm['correo'].value">
+            <ng-container *ngSwitchCase="''">El correo es requerido</ng-container>
+            <ng-container *ngSwitchDefault >El correo  es invalido!</ng-container>
+            </ng-container>
+        </small>
+      </div><br>
+
+      <div class="input-group mb-3">
+          <!--<img src="./../../../assets/imagenes/telefono.png"  width="35" height="35" alt="..." />-->
+        <img src="https://cdn-icons-png.flaticon.com/512/3059/3059407.png"  width="35" height="35" alt="..." /><label for="telefono" class="input-group-text">Telefono</label>
+          <input type="number" class="form-control" id="telefono" formControlName="telefono"  maxlength="12"   />
+               <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
+               *ngIf="(fm['telefono'].dirty || fm['telefono'].touched) && fm['telefono'].errors">
+               <ng-container [ngSwitch]="fm['telefono'].value">
+                 <ng-container *ngSwitchCase="''">El telefono es requerido</ng-container>
+
+                 <ng-container *ngSwitchDefault >El telefono  Debe de tener como maximo 12 digitos!</ng-container>
+                 </ng-container>
+             </small>
+      </div><br>
+    <div class="input-group mb-3">
+        <!--<img src="./../../../assets/imagenes/archivo.png"  width="35" height="35" alt="..." />-->
+        <img src="https://cdn-icons-png.flaticon.com/512/546/546391.png"  width="35" height="35" alt="..." /><label class="input-group-text" for="inputGroupFile01">CURP</label>
+        <input type="text" class="form-control" id="inputGroupFile01" formControlName="curp" maxlength="18" />
+        <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
+        *ngIf="(fm['curp'].dirty || fm['curp'].touched) && fm['curp'].errors">
+        <ng-container [ngSwitch]="fm['curp'].value">
+          <ng-container *ngSwitchCase="''">El curp es requerido</ng-container>
+          <ng-container *ngSwitchDefault >El curp  es invalido!</ng-container>
+          </ng-container>
+      </small>
+    </div><br>
+    <div class="input-group mb-3">
+      <!--<img src="./../../../assets/imagenes/archivo.png"  width="35" height="35" alt="..." />-->
+      <img src="https://cdn-icons-png.flaticon.com/512/546/546391.png"  width="35" height="35" alt="..." /><label class="input-group-text" for="inputGroupFile01">Usuario</label>
+      <input type="text" class="form-control" id="inputGroupFile01" formControlName="usuario" />
+      <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
+      *ngIf="(fm['usuario'].dirty || fm['usuario'].touched) && fm['usuario'].errors">
+      <ng-container [ngSwitch]="fm['usuario'].value">
+        <ng-container *ngSwitchCase="''">El usuario es requerido</ng-container>
+        <ng-container *ngSwitchDefault >El usuario  es invalido!</ng-container>
+        </ng-container>
+    </small>
+  </div><br>
+  <div class="input-group mb-3">
+    <!--<img src="./../../../assets/imagenes/archivo.png"  width="35" height="35" alt="..." />-->
+    <img src="https://cdn-icons-png.flaticon.com/512/546/546391.png"  width="35" height="35" alt="..." /><label class="input-group-text" for="inputGroupFile01">Contraseña</label>
+    <input type="text" class="form-control" id="inputGroupFile01" formControlName="contrasena" />
+    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
+    *ngIf="(fm['contrasena'].dirty || fm['contrasena'].touched) && fm['contrasena'].errors">
+    <ng-container [ngSwitch]="fm['contrasena'].value">
+      <ng-container *ngSwitchCase="''">La contraseña es requerida</ng-container>
+      <ng-container *ngSwitchDefault >La contraseña es invalida!</ng-container>
+      </ng-container>
+  </small>
+</div>
+  </div>
+
+  <div class="datosImagenDatosProfecionales">
+
+      <div class="imagenFisio">
+          <h3 style="text-align: center">Fotografia</h3>
+          <div class="mb-3">
+              <!--<img src="./../../../assets/imagenes/foto.png" alt="..."  />-->
+              <ng-container [ngSwitch]="prevsImg" >
+
+                <div *ngSwitchDefault>
+                  <img src="{{prevsImg}}" alt="" width="270" height="270" >
+                </div>
+
+             
+              </ng-container>
+              
+          </div>
+
+          <div class="input-group mb-3">
+              <input type="file" class="form-control" id="inputGroupFile01"  formControlName="fotografia" (change)="imagenFile($event)" accept="image/*"/>
+              <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
+              *ngIf="(fm['fotografia'].dirty || fm['fotografia'].touched) && fm['fotografia'].errors">
+              <ng-container [ngSwitch]="fm['fotografia'].value">
+                <ng-container *ngSwitchCase="''">La fotografia es requerida</ng-container>
+                <ng-container *ngSwitchDefault >La fotografia es invalida!</ng-container>
+                </ng-container>
+            </small>
+          </div>
+
+      </div>
+  </div>
+  <div class="RegistrarseSubmit">
+    <button type="submit" [disabled]="!formRegistroCliente.valid" class="btn btn-success">CONFIRMAR DATOS</button>
+</div>
+
+
+<div class="BotonRegreso">
+  <button type="button" [routerLink]="regFisio" class="btn btn-success">Registrarse como fisioterapeuta</button>
+</div>
+</form>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<small class="bd-danger text-light mt-1 px-2 py-1 rounded"
+*ngIf="(fm['apellido1'].dirty || fm['apellido1'].touched) && fm['apellido1'].errors"
+>
+<ng-container [ngSwitch]="fm['apellido1'].value">
+<ng-container *ngSwitchCase="''">El nombre es requerido</ng-container>
+<ng-container *ngSwitchDefault >El email es invalido!</ng-container>
+</ng-container>
+
+</small> -->
+
+
+
+
+
+
+
+  <!-- <small class="p-3 mb-2 bg-danger text-white"
+          *ngIf="(fm['nombre'].dirty || fm['nombre'].touched) && fm['nombre'].errors"
+          >
+        <ng-container [ngSwitch]="fm['nombre'].value">
+          <ng-container *ngSwitchCase="''">El nombre es requerido</ng-container>
+          <ng-container *ngSwitchDefault >El email es invalido!</ng-container>
+        </ng-container>
+        
+        </small> -->

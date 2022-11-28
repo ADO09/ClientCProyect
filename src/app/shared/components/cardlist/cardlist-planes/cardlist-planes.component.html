@@ -1,0 +1,103 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    
+        
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20">Tiempo: {{dataPlan.tiempo}}</h6>
+                    <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>Nombre: {{dataPlan.nombre_plan}}</span></h2>
+                    <p class="m-b-0">Descripcion: {{dataPlan.descripcion}}<span class="f-right">{{dataPlan.id_plan}}</span></p>
+                    <hr>
+                    <p class="m-b-0">Diagnostico: {{dataPlan.diagnostico}}<span class="f-right">{{dataPlan.id_plan}}</span></p>
+                    <hr>
+                    <p class="m-b-0">Enfermedades: {{dataPlan.enfermedades}}<span class="f-right">{{dataPlan.id_plan}}</span></p>
+                    <hr>
+                    <p class="m-b-0">Nivel de dolor:{{dataPlan.nivelDolor}}<span class="f-right">{{dataPlan.id_plan}}</span></p>
+                </div>
+                <button type="button" class="btn btn-success" (click)="ModalOpenFisio(contenido)" >Edit Plan</button>
+                <button type="button" class="btn btn-danger" (click)="elmPlan()" >Delete plan</button>
+            </div>
+        
+        
+</div>
+
+
+
+
+<ng-template #contenido let-modalF>
+    <div aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">EDIT PLAN</h5>
+                    <button type="button" class="btn btn-secondary" (click)="modalF.dismiss()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form (ngSubmit)="subupdatePlan(tiempo.value,nombre_plan.value,descripcion.value,diagnostico.value,nivelDolor.value)" errorTailor
+                        class="form-submitted">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Tiempo:</label>
+
+                            <input type="text" class="form-control" name="fecha" [value]="dataPlan.tiempo"
+                                #tiempo>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nombre:</label>
+
+                            <input type="text" class="form-control" id="recipient-name" name="time"
+                                [value]="dataPlan.nombre_plan" #nombre_plan>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Descripcion:</label>
+                            <textarea class="form-control" id="message-text" #descripcion
+                                [value]="dataPlan.descripcion"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Diagnostico:</label>
+                            <input type="text" class="form-control" id="recipient-name" value="{{dataPlan.diagnostico}}"
+                                #diagnostico>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Enfermedades:</label>
+                            <input type="text" class="form-control" id="recipient-name" #enfermedades
+                                [value]="dataPlan.enfermedades">
+                        </div>
+ 
+                        <!-- <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nivel de dolor:</label>
+                            <input type="text" class="form-control" id="recipient-name" [value]="dataPlan.nivelDolor" >
+                        </div> -->
+
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nivel de dolor:</label>
+                            <select [value]="dataPlan.nivelDolor" id="" class="form-control" #nivelDolor>
+                                <option value="bajito">bajito</option>
+                                <option value="bajo">bajo</option>
+                                <option value="medio">medio</option>
+                                <option value="alto">alto</option>
+                                <option value="acomoduele">a como duele</option>
+                                <option value="morido">morido</option>
+                            </select>
+                        </div>
+                        
+
+                     
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" (click)="modalF.close()"
+                                data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" >Send message</button>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</ng-template>

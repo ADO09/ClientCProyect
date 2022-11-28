@@ -1,0 +1,303 @@
+<!-- [formGroup]="formLogin" (ngSubmit)="subLogin(formRegister.value)" -->
+<div class="container">
+
+    <form [formGroup]="formRegistroFisio" (ngSubmit)="subRegFisio()" errorTailor class="form-submitted" >
+
+        <div class="datosPersonales">
+            <h2>REGISTRO FISIOTERAPEUTA</h2>
+    
+            <h4>Datos personales</h4>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre/s</label>
+                <input type="text" class="form-control" id="nombre" formControlName="nombre" placeholder="Enter Nombre" />
+                <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                *ngIf="(fm['nombre'].dirty || fm['nombre'].touched) && fm['nombre'].errors">
+                <ng-container [ngSwitch]="fm['nombre'].value">
+                  <ng-container *ngSwitchCase="''">El nombre  es requerido</ng-container>
+                  <ng-container *ngSwitchDefault >El nombre  es invalido!</ng-container>
+                  </ng-container>
+              </small>
+            </div>
+          
+    
+            <!-- aria-describedby="emailHelp"  -->
+            <div class="mb-3" >
+                <label for="apellido1" class="form-label">Apellido 1</label>
+                <input type="text" class="form-control" id="apellido1" formControlName="apellido1"
+                    placeholder="Enter Apellido 1" />
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['apellido1'].dirty || fm['apellido1'].touched) && fm['apellido1'].errors">
+                    <ng-container [ngSwitch]="fm['apellido1'].value">
+                      <ng-container *ngSwitchCase="''">El apellido 1 es requerido</ng-container>
+                      <ng-container *ngSwitchDefault >El apellido 1 es invalido!</ng-container>
+                      </ng-container>
+                  </small>
+            </div>
+          
+            
+    
+            <div class="mb-3">
+                <label for="apellido2" class="form-label">Apellido 2</label>
+                <input type="text" class="form-control" id="apellido2" formControlName="apellido2"
+                    placeholder="Enter Apellido 2" />
+                <small id="emailHelp" class="form-text text-muted">Opcional</small>
+
+                <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                *ngIf="(fm['apellido2'].dirty || fm['apellido2'].touched) && fm['apellido2'].errors">
+                <ng-container [ngSwitch]="fm['apellido2'].value">
+                  <ng-container *ngSwitchCase="''">El apellido 2  es requerido</ng-container>
+                  <ng-container *ngSwitchDefault >El apellido 2  es invalido!</ng-container>
+                  </ng-container>
+              </small>
+            </div>
+    
+            <div class="mb-3">
+                <label for="edad" class="form-label">Edad</label>
+                <input type="number" class="form-control" id="edad" formControlName="edad" placeholder="Enter Edad" />
+                <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                *ngIf="(fm['edad'].dirty || fm['edad'].touched) && fm['edad'].errors">
+                <ng-container [ngSwitch]="fm['edad'].value">
+                  <ng-container *ngSwitchCase="''">La edad  es requerida</ng-container>
+                  <ng-container *ngSwitchDefault >La edad  es invalida!</ng-container>
+                  </ng-container>
+              </small>
+            </div>
+    
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Direccion</label>
+                <input type="text" class="form-control" id="direccion" formControlName="direccion" placeholder="Enter Direccion" />
+                <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                *ngIf="(fm['direccion'].dirty || fm['direccion'].touched) && fm['direccion'].errors">
+                <ng-container [ngSwitch]="fm['direccion'].value">
+                  <ng-container *ngSwitchCase="''">La direccion  es requerida</ng-container>
+                  <ng-container *ngSwitchDefault >La direccion  es invalida!</ng-container>
+                  </ng-container>
+              </small>
+            </div>
+    
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Telefono</label>
+                <input type="tel" class="form-control" id="telefono" formControlName="telefono"
+                    placeholder="Enter Telefono" maxlength="12" />
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['telefono'].dirty || fm['telefono'].touched) && fm['telefono'].errors">
+                    <ng-container [ngSwitch]="fm['telefono'].value">
+                      <ng-container *ngSwitchCase="''">El telefono  es requerido</ng-container>
+                      <ng-container *ngSwitchDefault >El telefono  es invalido!</ng-container>
+                      </ng-container>
+                  </small>
+            </div>
+    
+            <div class="mb-3">
+                <label for="Email1">Email</label>
+                <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" placeholder="Enter email"
+                    formControlName="email" />
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['email'].dirty || fm['email'].touched) && fm['email'].errors">
+                    <ng-container [ngSwitch]="fm['email'].value">
+                      <ng-container *ngSwitchCase="''">El email  es requerido</ng-container>
+                      <ng-container *ngSwitchDefault >El email  es invalido!</ng-container>
+                      </ng-container>
+                  </small>
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+    
+            <div class="mb-3">
+                <label for="RFC">RFC</label>
+                <input type="text" class="form-control" id="RFC" aria-describedby="emailHelp" placeholder="Enter RFC"
+                    formControlName="RFC" maxlength="15" />
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['RFC'].dirty || fm['RFC'].touched) && fm['RFC'].errors">
+                    <ng-container [ngSwitch]="fm['RFC'].value">
+                      <ng-container *ngSwitchCase="''">El RFC  es requerido</ng-container>
+                      <ng-container *ngSwitchDefault >El RFC  es invalido!</ng-container>
+                      </ng-container>
+                  </small>
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+    
+            <div class="mb-3">
+                <label for="telefono_casa" class="form-label">Telefono de casa</label>
+                <input type="tel" class="form-control" id="telefono_casa" formControlName="telefono_casa"
+                    placeholder="Enter Telefono" maxlength="12" />
+                <small id="emailHelp" class="form-text text-muted">Puede ser celular.</small>
+                <small id="emailHelp" class="form-text text-muted">Opcional</small>
+                
+            </div>
+    
+            <hr>
+    
+            <h4>Datos de cuenta</h4>
+            <div class="mb-3">
+                <label for="usuario">Usuario de cuenta</label>
+                <input type="text" class="form-control" id="usuario" aria-describedby="emailHelp" placeholder="Enter Usuario"
+                    formControlName="usuario" />
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['usuario'].dirty || fm['usuario'].touched) && fm['usuario'].errors">
+                    <ng-container [ngSwitch]="fm['usuario'].value">
+                      <ng-container *ngSwitchCase="''">El usuario  es requerido</ng-container>
+                      <ng-container *ngSwitchDefault >El usuario  es invalido!</ng-container>
+                      </ng-container>
+                  </small>
+            </div>
+    
+            <div class="mb-3">
+                <label for="Contrasena">Contraseña</label>
+                <input type="password" class="form-control" id="Contrasena" aria-describedby="emailHelp" placeholder="Enter Contraseña"
+                    formControlName="contrasena" />
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['contrasena'].dirty || fm['contrasena'].touched) && fm['contrasena'].errors">
+                    <ng-container [ngSwitch]="fm['contrasena'].value">
+                      <ng-container *ngSwitchCase="''">La contraseña  es requerida</ng-container>
+                      <ng-container *ngSwitchDefault >La contraseña  es invalida!</ng-container>
+                      </ng-container>
+                  </small>
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
+        </div>
+    
+        <div class="datosImagenDatosProfecionales">
+    
+            <div class="imagenFisio">
+                <h3 style="text-align: center">Fotografia</h3>
+                <div class="mb-3">
+                    <img [src]="prevsImg" alt="..." width="140px" height="140px"/>
+                </div>
+    
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile01">Foto</label>
+                    <input type="file" class="form-control" id="inputGroupFile01"  formControlName="fotografia" (change)="imgFile($event)" accept=".jpg" />
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['fotografia'].dirty || fm['fotografia'].touched) && fm['fotografia'].errors">
+                    <ng-container [ngSwitch]="fm['fotografia'].value">
+                      <ng-container *ngSwitchCase="''">La fotografia  es requerida</ng-container>
+                      <!-- <ng-container *ngSwitchDefault >La fotografia  es invalida!</ng-container> -->
+                      </ng-container>
+                  </small>
+                </div>
+    
+            </div>
+    
+            <div class="datosProfecionales">
+                <h4>Datos Profecionales</h4>
+    
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Precio base a manejar</label>
+                    <input type="number" class="form-control" id="precio" formControlName="precio"
+                        placeholder="Enter Precio" />
+                        <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                        *ngIf="(fm['precio'].dirty || fm['precio'].touched) && fm['precio'].errors">
+                        <ng-container [ngSwitch]="fm['precio'].value">
+                          <ng-container *ngSwitchCase="''">El precio  es requerido</ng-container>
+                          <ng-container *ngSwitchDefault >El precio  es invalido!</ng-container>
+                          </ng-container>
+                      </small>
+                </div>
+    
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile02">Cedula</label>
+                    <input type="file" class="form-control" id="inputGroupFile02" formControlName="cedula" (change)="cedulaFile($event)" accept=".pdf"/>
+                    
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['cedula'].dirty || fm['cedula'].touched) && fm['cedula'].errors">
+                    <ng-container [ngSwitch]="fm['cedula'].value">
+                      <ng-container *ngSwitchCase="''">La cedula  es requerida</ng-container>
+                      <!-- <ng-container *ngSwitchDefault >La cedula  es invalida!</ng-container> -->
+                      </ng-container>
+                  </small>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile03">Titulos</label>
+                    <input type="file" class="form-control" id="inputGroupFile03" formControlName="titulo" (change)="tituloFile($event)" accept=".pdf"/>
+
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['titulo'].dirty || fm['titulo'].touched) && fm['titulo'].errors">
+                    <ng-container [ngSwitch]="fm['titulo'].value">
+                      <ng-container *ngSwitchCase="''">El titulo  es requerido</ng-container>
+                      <!-- <ng-container *ngSwitchDefault >El titulo  es invalido!</ng-container> -->
+                      </ng-container>
+                  </small>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile04">Certificados</label>
+                    <input type="file" class="form-control" id="inputGroupFile04" formControlName="certificados" (change)="certificadosFile($event)" accept=".pdf"/>
+
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['certificados'].dirty || fm['certificados'].touched) && fm['certificados'].errors">
+                    <ng-container [ngSwitch]="fm['certificados'].value">
+                      <ng-container *ngSwitchCase="''">El certificado  es requerido</ng-container>
+                      <!-- <ng-container *ngSwitchDefault >El certificado  es invalido!</ng-container> -->
+                      </ng-container>
+                  </small>
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile05">Especialidad</label>
+                    <input type="file" class="form-control" id="inputGroupFile05" formControlName="especialidades" (change)="especialidadesFile($event)" accept=".pdf"/>
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['especialidades'].dirty || fm['especialidades'].touched) && fm['especialidades'].errors">
+                    <ng-container [ngSwitch]="fm['especialidades'].value">
+                      <ng-container *ngSwitchCase="''">La especialidades  es requerida</ng-container>
+                      <!-- <ng-container *ngSwitchDefault >La especialidades  es invalida!</ng-container> -->
+                      </ng-container>
+                  </small>
+                </div>
+    
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile06">Años de experiencia</label>
+                    <input type="number" class="form-control" id="añosExperiencia" formControlName="anos_exp"
+                        placeholder="Enter Años" />
+                        
+                    <input type="file" class="form-control" id="inputGroupFile06" aria-describedby="inputGroupFileAddon03" formControlName="evidencia"
+                        aria-label="Upload" (change)="evidenciaFile($event)" accept=".pdf">
+
+                </div>
+    
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect07">Disponibilidad</label>
+                    <select class="form-select" id="inputGroupSelect07" formControlName="disponibilidad">
+                      <option selected disabled >Choose...</option>
+                      <option value="Tiempo Completo">Tiempo Completo</option>
+                      <option value="Medio Tiempo(Mañana)">Medio Tiempo(Mañana)</option>
+                      <option value="Medio Tiempo(Tarde)">Medio Tiempo(Tarde)</option>
+                    </select>
+                    <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
+                    *ngIf="(fm['disponibilidad'].dirty || fm['disponibilidad'].touched) && fm['disponibilidad'].errors">
+                    <ng-container [ngSwitch]="fm['disponibilidad'].value">
+                      <ng-container *ngSwitchCase="''">La disponibilidad  es requerida</ng-container>
+                      <ng-container *ngSwitchDefault >La disponibilidad  es invalida!</ng-container>
+                      </ng-container>
+                  </small>
+                    
+                  </div>
+    
+               
+                 
+    
+            </div>
+            <div class="RegistrarseSubmit">
+                <button type="submit" [disabled]="!formRegistroFisio.valid" class="btn btn-success">Registrarse</button>
+                <button type="button" [routerLink]="regClient"  class="btn btn-success">Registrarse como cliente</button>
+            </div>
+            
+           
+        </div>
+    
+    
+    
+    </form>
+
+
+    <div>
+        valido:{{formRegistroFisio.valid | json}}
+      </div>
+</div>
+
+<!--  -->
+
+<!-- <div class="opc">
+        <a class="link-primary" aria-current="page" href="/TipoRegistro">Registrarse</a>
+        <br>
+        <button type="submit" [disabled]="formLogin.invalid" class="btn btn-primary">Submit</button>
+      </div>
+       -->

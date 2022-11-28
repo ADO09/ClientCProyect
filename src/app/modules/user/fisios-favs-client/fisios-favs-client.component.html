@@ -1,0 +1,17 @@
+<h4 style="text-align: center;">BUSQUEDA</h4>
+<app-search-cita (searchTextChanged)="onSearchTextEntered($event)"></app-search-cita>
+<hr>
+
+<div class="row"style="margin-top: 35px;" >
+
+ <ng-container *ngIf="users ; else  elseUserLoader;" >
+    <app-list-fisiocard [data]="user" [favBoleano]='true' *ngFor="let user of users | filter:searchText;" class="col-8 col-md-5 col-xl-4"  >
+    </app-list-fisiocard>
+ </ng-container>
+
+
+ <ng-template #elseUserLoader>
+<app-card-loader class="col-8 col-md-5 col-xl-4" [bars]="4" *ngFor="let i of [0,1,2,3,4,5,6,7]" ></app-card-loader>
+ </ng-template>
+ 
+</div>

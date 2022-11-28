@@ -1,0 +1,33 @@
+<!-- <section class="tem-{{$theme}} {{showLeftNav ?  'main-container':'main-container-full'}} ">
+
+<app-header class="header-shw-mn" (showMenu)="showMenu()" >  </app-header>
+
+  
+</section>
+ -->
+
+
+ <section class="dsc-{{$theme}} {{showLeftNav ? 'dsc-main-container':'dsc-main-container-full'}}" >
+  <app-header class="dsc-header" (showMenu)="showMenu()"  >  </app-header>
+
+    <app-left-nav  class="dsc-left-nav"  *ngIf="showLeftNav" (showMenu)="showMenu()"></app-left-nav>
+    <main class="dsc-main-content">
+      <router-outlet></router-outlet>
+  </main>
+   </section>
+
+   <ng-container *ngIf="isLoading" >
+
+    <div  class="loader">
+      <img [src]="loader" alt="">
+    </div>
+   </ng-container>
+
+
+<!-- <app-navigation></app-navigation>
+
+<div class="container-fluid">
+   
+  </div>
+<app-footer></app-footer>
+   -->

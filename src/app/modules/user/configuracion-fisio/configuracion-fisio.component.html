@@ -1,0 +1,101 @@
+<div class="subtitulos">
+    <h5>Configuracion</h5>
+  </div>
+  
+  <form [formGroup]="formModificarUsuario" (ngSubmit)="subRegClient()"  errorTailor class="form-submitted">
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Nombre/s:</span>
+    <input type="text" class="form-control"  aria-describedby="basic-addon1"  formControlName="nombre_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Primer Apellido:</span>
+    <input type="text" class="form-control"  aria-describedby="basic-addon1"  formControlName="apellido1_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Segundo Apellido:</span>
+    <input type="text" class="form-control"  aria-describedby="basic-addon1"  formControlName="apellido2_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Edad:</span>
+    <input type="number" class="form-control"  aria-describedby="basic-addon1"  formControlName="edad_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Direccion:</span>
+    <input type="text" class="form-control"  aria-describedby="basic-addon1" formControlName="direccion_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Telefono:</span>
+    <input type="number" class="form-control"  aria-describedby="basic-addon1"  formControlName="telefono_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Correo:</span>
+    <input type="text" class="form-control"  aria-describedby="basic-addon1"  formControlName="correo_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">RFC:</span>
+    <input type="text" class="form-control"  aria-describedby="basic-addon1" formControlName="RFC_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Telefono de casa:</span>
+    <input type="number" class="form-control"  aria-describedby="basic-addon1"  formControlName="telefono_casa_">
+  </div>
+  <div class="RegistrarseSubmit">
+</div>
+  
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Cedula:</span>
+    <input type="file" class="form-control" (change)="onselectFileC($event)"  aria-describedby="basic-addon1" formControlName="cedula_" accept=".pdf">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Titulo:</span>
+    <input type="file" class="form-control" (change)="onselectFileT($event)"  aria-describedby="basic-addon1"  formControlName="titulo_" accept=".pdf">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Certificado:</span>
+    <input type="file" class="form-control" (change)="onselectFileCER($event)"  aria-describedby="basic-addon1"  formControlName="certificados_" accept=".pdf">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Especialidades:</span>
+    <input type="file" class="form-control" (change)="onselectFileESP($event)"  aria-describedby="basic-addon1"  formControlName="especialidades_" accept=".pdf">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Años de experiencia:</span>
+    <input type="number" class="form-control"  aria-describedby="basic-addon1"  formControlName="anos_exp_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Evidencia:</span>
+    <input type="file" class="form-control" (change)="onselectFileEVD($event)" aria-describedby="basic-addon1" formControlName="evidencia_" accept=".pdf">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Disponibilidad:</span>
+    <select class="form-select" id="inputGroupSelect01" formControlName="disponibilidad_">
+        <option selected disabled >Choose...</option>
+        <option value="Tiempo Completo">Tiempo Completo</option>
+        <option value="Medio Tiempo(Mañana)">Medio Tiempo(Mañana)</option>
+        <option value="Medio Tiempo(Tarde)">Medio Tiempo(Tarde)</option>
+      </select>    
+</div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Precio:</span>
+    <input type="number" class="form-control"  aria-describedby="basic-addon1" formControlName="precio_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Usuario:</span>
+    <input type="text" class="form-control"  aria-describedby="basic-addon1" formControlName="usuario_">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Contraseña:</span>
+    <input type="text" class="form-control"  aria-describedby="basic-addon1" formControlName="contrasena_">
+  </div>
+
+  <img [src]="urlimg" width="180" height="180"><br><br>
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Fotografia:</span>
+    <input type="file" (change)="onselectFile($event)" class="form-control"  aria-describedby="basic-addon1" formControlName="foto_" accept="image/*">
+  </div>
+  <div class="button">
+    <button type="submit" style="margin: 5px" class="btn btn-primary">GUARDAR</button>
+    <button type="button" style="margin: 5px" class="btn btn-danger" [routerLink]="'/inicio'">CANCELAR</button>
+  </div>
+  
+</form>

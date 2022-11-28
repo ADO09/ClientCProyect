@@ -1,0 +1,8 @@
+.nmc{
+    position: absolute;
+    margin-top:19px ;
+    margin-left: 30px;
+    border-radius: 75% 75%;
+    background: rgb(221, 63, 63);
+    color: white;
+}

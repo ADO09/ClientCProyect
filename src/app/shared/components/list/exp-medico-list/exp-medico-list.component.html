@@ -1,0 +1,44 @@
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+	<ngb-panel title="Cita numero #{{dataExpt.id_cita}}">
+		<ng-template ngbPanelContent>
+
+            <h5>Fecha</h5>
+            <p>{{dataExpt.fecha | date:'fullDate'}}</p>
+            <hr>
+            <h5>Hora</h5>
+            <p>{{((dataExpt.fecha|date:'yyyy-MM-dd' +' ' + dataExpt.hora)| date:'shortTime')}}</p>
+            <hr>
+            <h5>Descipcion de cita</h5>
+            <p>{{dataExpt.descripcion}}</p>
+            <hr>
+            <h5>Tipo de consulta</h5>
+            <p>{{dataExpt.tipo_consulta}}</p>
+            <hr>
+            <h5>Direccion de realizacion</h5>
+            <p>{{dataExpt.direccion}}</p>
+            <hr>
+            <h5>Nombre de fisioterapeuta</h5>
+            <p>{{dataExpt.nombre}} {{dataExpt.apellido1}} {{dataExpt.apellido2}}</p>
+            <hr>
+            <h5>Correo de fisioterapeuta</h5>
+            <p>{{dataExpt.correo}}</p>
+            <hr>
+            <h5>Telefono de fisioterapeuta</h5>
+            <p>{{dataExpt.telefono}}</p>
+            <hr>
+            <h5>Perfil de fisio</h5>
+            <button type="button" class="btn btn-primary" [routerLink]="perfilFisio + dataExpt.id_fisio"  >Perfil</button>
+            <hr>
+            <h5>Plan de rehabilitacion asignado</h5>
+            <div class="rainbow" style="margin-left: 10px;" id="tv" >
+                <p>Nombre:{{dataExpt.nombre_plan}}</p>
+                <p>Tiempo:{{dataExpt.tiempo}}</p>
+                <p>Diagnostico:{{dataExpt.diagnostico}}</p>
+                <p>Descripcion:{{dataExpt.descripcion_plan}}</p>
+                <p>Nivel de dolor:{{dataExpt.nivelDolor}}</p>
+                <p>Enfermedades Registradas:{{dataExpt.enfermedades}}</p>
+            </div>
+          
+		</ng-template>
+	</ngb-panel>
+</ngb-accordion>

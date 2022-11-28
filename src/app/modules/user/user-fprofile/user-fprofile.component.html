@@ -1,0 +1,279 @@
+<!-- <p>user-fprofile works!</p>
+<H2> ESTE ES EL ID:  {{id}} </H2> -->
+<section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row">
+        <div class="col">
+          <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+            <ol class="breadcrumb mb-0">
+              <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
+               -->
+              <li class="breadcrumb-item"><a href="{{ListaFisios}}">Users list</a></li>
+              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card mb-4">
+           
+            <div class="card-body text-center">
+              <img src="{{urlIMG}}{{this.currentUser?.fotografia}}" alt="avatar"
+                class="rounded-circle img-fluid" style="width: 150px; height: 150px; ">
+              <h4 class="my-3"  >{{this.currentUser?.nombre}}</h4>
+              <p class="text-muted mb-1"> <i class="bi bi-suit-heart-fill" style="color: #e64949;" ></i>  {{this.currentUser?.puntuacion}} </p>
+              <p class="text-muted mb-4">{{this.currentUser?.direccion}}</p>
+
+              <!-- <div class="TipoUsuario" *ngif="this.currentUser?.TipoUsuario == 'fisioterapeuta'" ></div> -->
+              <div class="d-flex justify-content-center mb-2">
+                <ng-container *ngIf="condButtons">
+                  <!-- <button type="button" class="btn btn-primary">Follow</button> -->
+                  <button type="button" class="btn btn-outline-primary ms-1" (click)="ModalSendMessage(contenidoSendMessage)">Message</button>
+                </ng-container>
+                
+              </div>
+            </div>
+          </div>
+          <div class="card mb-4 mb-lg-0">
+            <div class="card-body p-0">
+              <ul class="list-group list-group-flush rounded-3">
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="bi bi-globe"></i>
+                  <p class="mb-0"> {{this.currentUser?.correo}} </p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="bi bi-whatsapp" style="color: #57d17f;"></i>
+                  <p class="mb-0">{{this.currentUser?.telefono}}</p>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="bi bi-twitter" style="color: #55acee;"></i>
+                  <p class="mb-0">{{this.currentUser?.correo}}</p>
+                </li>
+                <!-- <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
+                  <p class="mb-0">mdbootstrap</p>
+                </li> -->
+                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                  <i class="bi bi-facebook" style="color: #3b5998;"></i>
+                  
+                  <p class="mb-0">{{this.currentUser?.correo}}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+
+            <!-- datos personales -->
+          <div class="card mb-4">
+        
+            <div class="card-body">
+                <h4>Datos Personales</h4>
+                <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Full Name</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{this.currentUser?.nombre}} {{this.currentUser?.apellido1}} {{this.currentUser?.apellido2}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Email</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{this.currentUser?.correo}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Phone</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{this.currentUser?.telefono}} </p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Mobile</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{this.currentUser?.telefono_casa}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Address</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{this.currentUser?.direccion}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+         
+
+<!-- datos profecionales 
+cedula:string;
+    titulo:string;
+    certificados:string;
+    especialidades:string;
+    anos_exp:number;
+    evidencia:string;
+    disponibilidad:string;
+    fotografia:string;
+    precio:number;  
+-->
+          <div class="card mb-4">
+            
+            <div class="card-body">
+                <h4>Datos Profesionales</h4>
+                <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">cedula</p>
+                </div>
+                <div class="col-sm-9">
+                 
+                  <!-- <p class="text-muted mb-0">{{this.currentUser?.cedula}} </p> -->
+                  <a  class="text-light mb-0" style="text-align: center; background: #35a5ad; border-radius: 5px; padding: 3px;" [href]="urlIMG+this.currentUser?.cedula" target="_blank">Cedula</a>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Certificados</p>
+                </div>
+                <div class="col-sm-9">
+                  <!-- <p class="text-muted mb-0">{{this.currentUser?.certificados}}</p> -->
+                  <a  class="text-light mb-0" style="text-align: center; background: #35a5ad; border-radius: 5px; padding: 3px;" [href]="urlIMG+this.currentUser?.certificados" target="_blank">Certificados</a>
+              
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Especialidades</p>
+                </div>
+                <div class="col-sm-9">
+                  <!-- <p class="text-muted mb-0">{{this.currentUser?.especialidades}} </p> -->
+                  <a  class="text-light mb-0" style="text-align: center; background: #35a5ad; border-radius: 5px; padding: 3px;" [href]="urlIMG+this.currentUser?.especialidades" target="_blank">Especialidades </a>
+
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Años de experiencia</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{this.currentUser?.anos_exp}}</p>
+                  
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Evidencia A/EXP</p>
+                </div>
+                <div class="col-sm-9">
+                  <!-- <p class="text-muted mb-0">{{this.currentUser?.evidencia}}</p> -->
+                  <a  class="text-light mb-0" style="text-align: center; background: #35a5ad; border-radius: 5px; padding: 3px;" [href]="urlIMG+this.currentUser?.evidencia" target="_blank">Evidencia</a>
+
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Titulo</p>
+                </div>
+                <div class="col-sm-9">
+                  <!-- <p class="text-muted mb-0">{{this.currentUser?.evidencia}}</p> -->
+                  <a  class="text-light mb-0" style="text-align: center; background: #35a5ad; border-radius: 5px; padding: 3px;" [href]="urlIMG+this.currentUser?.titulo" target="_blank">Titulo</a>
+
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Disponibilidad</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{this.currentUser?.disponibilidad}}</p>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-3">
+                  <p class="mb-0">Precio base</p>
+                </div>
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0">{{this.currentUser?.precio}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+          
+<ng-template #contenidoSendMessage let-modalMsg>
+  <div aria-labelledby="exampleModalLabel">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Send a message to</h5>
+                  <button type="button" class="btn btn-secondary" (click)="modalMsg.dismiss()" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+
+                  <form [formGroup]="formsendMessage" (ngSubmit)="SendMessage()" errorTailor
+                      class="form-submitted">
+                      <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Correo:</label>
+
+                          <input type="email"  class="form-control" name="correo" formControlName="correo"  >
+
+                      </div>
+                      <div class="form-group">
+                          <label for="recipient-name" class="col-form-label">Asunto:</label>
+                          <input type="text" class="form-control" id="recipient-name" formControlName="asunto" >
+                      </div>
+                      <div class="form-group">
+                          <label for="message-text" class="col-form-label">Mensage:</label>
+                          <textarea class="form-control" id="message-text" formControlName="mensaje" rows="15"></textarea>
+                      </div>
+
+                   
+
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" (click)="modalMsg.close()"
+                              data-dismiss="modal">Cancel</button>
+                          <button type="submit" class="btn btn-primary" >Send message</button>
+                      </div>
+                  </form>
+
+              </div>
+
+          </div>
+      </div>
+  </div>
+</ng-template>
+

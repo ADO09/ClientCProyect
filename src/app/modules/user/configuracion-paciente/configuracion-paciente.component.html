@@ -1,0 +1,50 @@
+<form [formGroup]="formModificarUsuario" (ngSubmit)="subRegClient()" errorTailor class="form-submitted">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Nombre/s:</span>
+      <input type="text" class="form-control"  aria-describedby="basic-addon1"  formControlName="nombre_">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Primer Apellido:</span>
+      <input type="text" class="form-control"  aria-describedby="basic-addon1"  formControlName="apellido1_">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Segundo Apellido:</span>
+      <input type="text" class="form-control"  aria-describedby="basic-addon1"  formControlName="apellido2_">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Edad:</span>
+      <input type="number" class="form-control"  aria-describedby="basic-addon1"  formControlName="edad_">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Telefono:</span>
+      <input type="number" class="form-control"  aria-describedby="basic-addon1"  formControlName="telefono_">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Correo</span>
+      <input type="text" class="form-control"  aria-describedby="basic-addon1"  formControlName="correo_">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">CURP:</span>
+      <input type="text" class="form-control"  aria-describedby="basic-addon1"  formControlName="curp_">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Usuario:</span>
+      <input type="text" class="form-control"  aria-describedby="basic-addon1" formControlName="usuario_">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Contraseña:</span>
+      <input type="password" class="form-control"  aria-describedby="basic-addon1"  formControlName="contrasena_">
+    </div>
+  
+    <div class="RegistrarseSubmit">
+  </div>
+  <img [src]="urlimg" width="180" height="180"><br><br>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">Fotografia:</span>
+      <input type="file" (change)="onselectFile($event)" (change)="imagenFile($event)" class="form-control"  aria-describedby="basic-addon1"  formControlName="foto_" accept="image/*">
+    </div>
+    <div class="button">
+      <button type="submit" style="margin: 5px" class="btn btn-primary">GUARDAR</button>
+      <button type="button" style="margin: 5px" class="btn btn-danger" [routerLink]="profileC">CANCELAR</button>
+    </div>
+  </form> 

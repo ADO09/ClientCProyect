@@ -1,0 +1,90 @@
+<div class="subtitulos">
+    <h4>Balance General</h4>
+  </div>
+<form errorTailor class="form-submitted" >    
+    <!-- <input type="text" class="form-control" name="filterPost" placeholder="Buscar" [(ngModel)] = 'filterPost'> -->
+    <h4 style="text-align: center;">BUSQUEDA</h4>
+    <app-search-cita (searchTextChanged)="onSearchTextEntered($event)"></app-search-cita>
+    <hr>
+    <table class="table" style="font-size: 17px;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">fisio</th>
+            <th scope="col">cliente</th>
+            <th scope="col">plan</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Descripcion</th>
+            <th scope="col">Tipo de consulta</th>
+            <th scope="col">Direccion</th>
+            <th scope="col" style="background: rgb(63, 197, 123);" > costo</th>
+            <!-- <th scope="col">Contraseña</th>
+            <th scope="col">Accion</th> -->
+          </tr>
+        </thead>
+
+        <!-- 
+               num_cita?:number;
+    id_cita:number;
+    id_fisio:number;
+    id_cliente:number;
+    id_plan?:any;
+    nombre:string;
+    apellido1:string;
+    apellido2:string;
+    curp:string;
+    fecha:any;
+    hora:any;
+    descripcion:string;
+    tipo_consulta:string;
+    estatus:string;
+    direccion:string;
+    correo?:any;
+    costo?:any;
+         -->
+        
+
+        <tbody>
+          <tr *ngFor="let post of CitaDatos  | filter:searchText  ; ">
+            <td id="id_cita">{{post.id_cita}}</td>
+            <!-- <td id="foto"><img src="{{Api}}{{post.fotografia}}" alt="..." width="80" height="80"></td> -->
+            <td id="id_fisio">{{post.id_fisio}}</td>
+            <td id="id_cliente">{{post.id_cliente}}</td>
+            <td id="id_plan">{{post.id_plan}}</td>
+            <td id="fecha"> {{post.fecha | date:'fullDate'}}</td>
+            <td id="hora">{{((post.fecha|date:'yyyy-MM-dd' +' ' + post.hora)| date:'shortTime')}}</td>
+            <td id="descripcion">{{post.descripcion}}</td>
+            <td id="tipo_consulta">{{post.tipo_consulta}}</td>
+            <td id="direccion">{{post.direccion}}</td>
+            <td id="costo"  style="background: rgb(83, 189, 131);">{{post.costo}}</td>
+            <!-- <td>
+            <div class="button">
+                <button style="margin: 5px" class="btn btn-primary" (click)="mostrarModalInfo(post)">MODIFICAR</button>
+                <button type="button" style="margin: 5px" class="btn btn-danger" (click)="eliminar(post.id_cliente)">ELIMINAR</button>
+              </div>
+            </td> -->
+
+            
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total</td>
+            <td  style="background: rgb(144, 209, 173);" >{{totalCostoCita}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+      
+</form>
+
+
+
+

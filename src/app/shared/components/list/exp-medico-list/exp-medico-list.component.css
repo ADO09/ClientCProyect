@@ -1,0 +1,14 @@
+
+#tv {
+  width: 35%;
+  position: relative;
+  border: 0.4px black solid;
+  border-radius: 0% 0% 0% 0% / 0% 0% 0% 0% ;
+  box-shadow: 20px 20px rgba(0,0,0,.15);
+  transition: all .4s ease;
+  padding: 5px;
+}
+#tv:hover {
+ 
+  box-shadow: 10px 10px rgba(0,0,0,.25);
+}

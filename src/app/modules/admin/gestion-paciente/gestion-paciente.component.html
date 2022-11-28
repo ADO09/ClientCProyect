@@ -1,0 +1,115 @@
+<div class="subtitulos">
+    <h5>Gestion de Pacientes</h5>
+  </div>
+<form errorTailor class="form-submitted">    
+    <!-- <input type="text" class="form-control" name="filterPost" placeholder="Buscar" [(ngModel)] = 'filterPost'> -->
+    <h4 style="text-align: center;">BUSQUEDA</h4>
+    <app-search-cita (searchTextChanged)="onSearchTextEntered($event)"></app-search-cita>
+    <hr>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fotografia</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Primer Apellido</th>
+            <th scope="col">Segundo Apellido</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Correo</th>
+            <th scope="col">CURP</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Contraseña</th>
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let post of clientesData  | filter:searchText  ; ">
+            <td id="id">{{post.id_cliente}}</td>
+            <td id="foto"><img src="{{Api}}{{post.fotografia}}" alt="..." width="80" height="80"></td>
+            <td id="nom">{{post.nombre}}</td>
+            <td id="ap1">{{post.apellido1}}</td>
+            <td id="ap2">{{post.apellido2}}</td>
+            <td id="ed">{{post.edad}}</td>
+            <td id="tel">{{post.telefono}}</td>
+            <td id="corr">{{post.correo}}</td>
+            <td id="curp">{{post.curp}}</td>
+            <td id="usr">{{post.usuario}}</td>
+            <td id="contra">{{post.contrasena}}</td>
+            <td>
+            <div class="button">
+                <button style="margin: 5px" class="btn btn-primary" (click)="mostrarModalInfo(post)">MODIFICAR</button>
+                <button type="button" style="margin: 5px" class="btn btn-danger" (click)="eliminar(post.id_cliente)">ELIMINAR</button>
+              </div>
+            </td>
+        </tr>
+        </tbody>
+      </table>
+
+</form>
+
+
+
+
+<ng-template #modalPaciente let-modal>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modificar Paciente</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cerrarmodal()"></button>
+        </div>
+        <div class="modal-body">
+          
+         
+            <form [formGroup]="formModificarCliente" (ngSubmit)="subRegClient()">
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label" >Fotografia:</label><br>
+                <img [src]="url" width="180" height="180"><br><br>
+                <input type="file" (change)="onselectFile($event)" class="form-control" formControlName="foto_" accept="image/*">
+              </div>
+              <div class="mb-3">
+              <label for="recipient-name" class="col-form-label" >Nombre:</label>
+              <input type="text" class="form-control"  id="recipient-name1" formControlName="nombre_">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Primer Apellido:</label>
+              <input type="text" class="form-control" id="recipient-name2" formControlName="apellido1_">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Segundo Apellido:</label>
+              <input type="text" class="form-control" id="recipient-name3" formControlName="apellido2_">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Edad:</label>
+              <input type="number" class="form-control" id="recipient-name4" formControlName="edad_">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Telefono:</label>
+              <input type="number" class="form-control" id="recipient-name5" formControlName="telefono_">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Correo:</label>
+              <input type="text" class="form-control" id="recipient-name6" formControlName="correo_">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">CURP:</label>
+              <input type="text" class="form-control"  id="recipient-name7" formControlName="curp_">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Usuario:</label>
+              <input type="text" class="form-control" id="recipient-name8" formControlName="usuario_">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Contraseña:</label>
+              <input type="text" class="form-control" id="recipient-name9" formControlName="contrasena_">
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary"  >GUARDAR</button>
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+ 
+</ng-template>  

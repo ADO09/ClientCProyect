@@ -1,0 +1,28 @@
+<div class="container">
+  <h4 style="text-align: center;">BUSQUEDA</h4>
+  <app-search-cita (searchTextChanged)="onSearchTextEntered($event)"></app-search-cita>
+  <hr>
+  <h5 style="text-align: center;">Citas</h5>
+  <div class="row" style="margin-top: 40px;">
+    <ng-container *ngIf="condUser; else elsedatasend " >
+
+      <ng-container *ngIf="citas ; else  elseUserLoader;">
+        <app-cardlist-citas [data]="cita" *ngFor="let cita of citas | filter:searchText " class="col-8 col-md-5 col-xl-4">
+        </app-cardlist-citas>
+      </ng-container>
+    </ng-container>
+  
+    <ng-template #elsedatasend>
+      <ng-container  *ngIf="citasC ; else  elseUserLoader;" >
+        <app-cardlist-citas [dataC]="cita" *ngFor="let cita of citasC | filter:searchText " class="col-8 col-md-5 col-xl-4">
+        </app-cardlist-citas>
+      </ng-container>
+    </ng-template>
+
+
+    <ng-template #elseUserLoader>
+      <app-card-loader class="col-8 col-md-5 col-xl-4" [bars]="4" *ngFor="let i of [0,1,2,3,4,5,6,7]"></app-card-loader>
+    </ng-template>
+
+  </div>
+</div>
