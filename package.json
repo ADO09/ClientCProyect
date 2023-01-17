@@ -24,13 +24,17 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@ng-bootstrap/ng-bootstrap": "^13.1.0",
     "@popperjs/core": "^2.10.2",
+    "@types/googlemaps": "^3.43.3",
+    "@types/uuid": "^9.0.0",
     "bootstrap": "^5.2.2",
     "bootstrap-icons": "^1.10.1",
+    "firebase": "^9.14.0",
     "mdb-ui-kit": "^6.0.0",
     "ng2-search-filter": "^0.5.1",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.8",
     "tslib": "^2.3.0",
+    "uuid": "^9.0.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

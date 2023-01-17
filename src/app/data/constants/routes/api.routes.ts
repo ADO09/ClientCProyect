@@ -14,6 +14,7 @@ export const API_ROUTES = {
     CITASF:{
         CITASFISIO:`${ENV.url}cita/listCitaFisio/`,
         CITASFISIOHISTORY:`${ENV.url}cita/listCitaFisioH/`,
+        CITASFISIOHISTORYBALANCE:`${ENV.url}cita/listCitaFisioHBalance/`,
         UPDATECITAFISIO:`${ENV.url}cita/`,
         DELETECITAFISIO:`${ENV.url}cita/`,
         CITASCOUNT:`${ENV.url}cita/countCitas/`,
@@ -35,7 +36,22 @@ export const API_ROUTES = {
         MAILERMSSE:`${ENV.url}mailer/mssge`,
         MAILERCLIENTEAFISIO:`${ENV.url}mailer/mssgClienteFisio`,
         MAILERACPTFISIO:`${ENV.url}mailer/citAcptFis`,
-        MAILERACPTCLIENT:`${ENV.url}mailer/citAcptClit`
+        MAILERACPTCLIENT:`${ENV.url}mailer/citAcptClit`,
+        MAILERBANEOCUENTA:`${ENV.url}mailer/baneoCuenta`,
+        MAILERFORGOTPASSWORD:`${ENV.url}generalRoutes/forgotPassword/`
+    },
+    COMMENTSF: {
+        COMMENTS:`${ENV.url}clientesF/comments/`,
+        ADDCOMMENTS:`${ENV.url}clientesF/commentsADD`,
+        ELMCOMMENT:`${ENV.url}clientesF/commentsDEL/`,
+     
+
+        
+    },
+    CHAT: {
+        USERDATACHAT:`${ENV.url}generalRoutes/DataSendMessage/`,
     }
+    
+
     
 }

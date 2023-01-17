@@ -90,7 +90,7 @@
     
             <div class="mb-3">
                 <label for="Email1">Email</label>
-                <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" placeholder="Enter email"
+                <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" placeholder="Enter gmail"
                     formControlName="email" />
                     <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
                     *ngIf="(fm['email'].dirty || fm['email'].touched) && fm['email'].errors">
@@ -131,7 +131,7 @@
             <div class="mb-3">
                 <label for="usuario">Usuario de cuenta</label>
                 <input type="text" class="form-control" id="usuario" aria-describedby="emailHelp" placeholder="Enter Usuario"
-                    formControlName="usuario" />
+                    formControlName="usuario"  />
                 <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                 <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 w-100  rounded "
                     *ngIf="(fm['usuario'].dirty || fm['usuario'].touched) && fm['usuario'].errors">
@@ -292,6 +292,58 @@
         valido:{{formRegistroFisio.valid | json}}
       </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+
+
+
+
+
+<h1>Mapa Angular</h1>
+
+<button (click)="mapRuta()">Calcular ruta</button>
+<h1>La distancia es: {{distancia}}</h1>
+
+
+<div class="formulario">
+    <form [formGroup]="formMapas" (ngSubmit)="onSubmit()">
+  
+      <input type="text" #inputPlaces id="inputPlaces"  formControlName="busqueda">
+  
+      <div class="form panel">
+  
+        <div>
+          <img class="sb-title-icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/location_pin/v5/24px.svg"
+            alt="">
+        </div>
+  
+        <input type="text" placeholder="Direccion" formControlName="direccion" />
+        <input type="text" placeholder="Edificio, departamento, piso (opcional)" formControlName="referencia" />
+        <input type="text" placeholder="Ciudad" class="ciudad" formControlName="ciudad" />
+        <input type="text" placeholder="Provincia" formControlName="provincia" />
+        <div class="half-input-container">
+          <input type="text" class="half-input" placeholder="Region" formControlName="region" />
+        </div>
+  
+        <button class="button-cta" type="submit">Guardar</button>
+  
+      </div>
+
+      <div class="mapa" #divMap></div>
+      
+    </form>
+  </div>
 
 <!--  -->
 

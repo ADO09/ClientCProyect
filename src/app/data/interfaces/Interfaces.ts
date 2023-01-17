@@ -13,7 +13,24 @@ export interface cliTPinterface {
     TipoUsuario?:string;
     favoritos?:any;
     TemaPagina?:any;
+    estatusCuenta?:any;
 
+}
+
+
+
+
+export interface comment  {
+
+  idcomments?:any;
+  id_fisio?:any;
+  id_clienteCom?:any;
+  id_fisioCom?:any;
+  puntuacion?:any;
+  comentario?:any;
+  fecha?:any;
+  nombre?:any;
+  fotografia?:any;
 }
 
 
@@ -40,6 +57,7 @@ export interface Config {
     fotografia:any;
     TemaPagina?:any;
     favoritos: any ;
+    estatusCuenta?: any ;
   }
 
 
@@ -69,7 +87,7 @@ export interface Config {
     contrasena:string;
     TipoUsuario:string;
     TemaPagina?:any;
-
+    estatusCuenta?:any;
     
   }
 
@@ -91,6 +109,8 @@ export interface Config {
     direccion:string;
     correo?:any;
     costo?:any;
+    estatusCuenta:any;
+    usuario?:any;
   }
 
   export interface ListPlanCard {
@@ -124,6 +144,8 @@ export interface Config {
     id_plan?:any;
     correo?:any;
     costo?:any;
+    estatusCuenta:any;
+    usuario?:any;
   }
 
   export interface ExpMedicoInterface {
@@ -150,5 +172,31 @@ export interface Config {
     telefono:string;
     
   }
+
   
+  export interface userSendMessageInterface {
+
+    nombre:any;
+    apellido1?:any;
+    id_user:any;
+    usuario:any;
+    TipoUsuario:any;
+    fotografia:any;
+  }
+  
+
+
+  export interface Chat {
+    id?: string;
+    username: string;
+    id_fisio?: any;
+    id_cliente?: any;
+    tipo_usuario?:any;
+    userF?:any;
+    userC:any;
+    message: string;
+    timestamp: Date;
+    fotografia?:any;
+  }
+
 

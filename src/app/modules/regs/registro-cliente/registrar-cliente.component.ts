@@ -112,6 +112,7 @@ export class RegistrarClienteComponent implements OnInit {
    
     this.formData.append('nombre', this.formRegistroCliente.value.nombre);
     this.formData.append('apellido1', this.formRegistroCliente.value.apellido1);
+    this.formData.append('edad', this.formRegistroCliente.value.edad);
     this.formData.append('apellido2', this.formRegistroCliente.value.apellido2);
     this.formData.append('telefono', this.formRegistroCliente.value.telefono);
     this.formData.append('correo', this.formRegistroCliente.value.correo);
@@ -168,6 +169,7 @@ export class RegistrarClienteComponent implements OnInit {
       this.formData.delete('apellido1');
       this.formData.delete('apellido2');
       this.formData.delete('telefono');
+      this.formData.delete('edad');
       this.formData.delete('correo');
       this.formData.delete('curp');
       this.formData.delete('usuario');

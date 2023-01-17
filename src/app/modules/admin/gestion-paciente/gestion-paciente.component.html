@@ -20,7 +20,8 @@
             <th scope="col">CURP</th>
             <th scope="col">Usuario</th>
             <th scope="col">Contraseña</th>
-            <th scope="col">Accion</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -36,11 +37,20 @@
             <td id="curp">{{post.curp}}</td>
             <td id="usr">{{post.usuario}}</td>
             <td id="contra">{{post.contrasena}}</td>
+            <td id="estatus">{{post.estatusCuenta}}</td>
             <td>
             <div class="button">
                 <button style="margin: 5px" class="btn btn-primary" (click)="mostrarModalInfo(post)">MODIFICAR</button>
                 <button type="button" style="margin: 5px" class="btn btn-danger" (click)="eliminar(post.id_cliente)">ELIMINAR</button>
-              </div>
+                <ng-container *ngIf="post.estatusCuenta == '1' ">
+                  <button type="button" style="margin: 5px" class="btn btn-warning" (click)="banear(post.id_cliente,post.correo)">BANEAR</button>
+                </ng-container>
+
+
+                <ng-container *ngIf="post.estatusCuenta == '2' ">
+                  <button type="button" style="margin: 5px" class="btn btn-success" (click)="desbanear(post.id_cliente,post.correo)">DESBANEAR</button>                
+                </ng-container>
+                  </div>
             </td>
         </tr>
         </tbody>

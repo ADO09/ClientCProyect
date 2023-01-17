@@ -10,7 +10,7 @@ import { ApiService } from '../login/api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RegistroClientService {
+export class RegistroClientService  {
 
 
   constructor(private http: HttpClient,
@@ -55,6 +55,8 @@ export class RegistroClientService {
     return this.http.post<{ error: boolean, msg: string, data:any }>(API_ROUTES.USUARIOS.FISIOS, data)
       .pipe(
         map(r => {
+          
+          console.log(r);
           
           response.msg = r.msg;
           response.error = r.error;

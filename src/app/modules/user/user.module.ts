@@ -21,6 +21,7 @@ import { GestionFisioComponent } from '@modules/admin/gestion-fisio/gestion-fisi
 import { GestionPacienteComponent } from '@modules/admin/gestion-paciente/gestion-paciente.component';
 import { ConfiguracionFisioComponent } from './configuracion-fisio/configuracion-fisio.component';
 import { BalanceGListComponent } from './balance-glist/balance-glist.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { BalanceGListComponent } from './balance-glist/balance-glist.component';
     GestionFisioComponent,
      GestionPacienteComponent,
      ConfiguracionFisioComponent,
-     BalanceGListComponent
+     BalanceGListComponent,
+     ChatComponent
   
   ],
   imports: [

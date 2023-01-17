@@ -63,7 +63,8 @@
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
                       in</button>
-                    <a class="text-muted" href="#!">Forgot password?</a>
+                    <!-- <a class="text-muted" href >Forgot password?</a> -->
+                    <button type="button" class="text-muted" style="border: none; background:none "  (click)="ModalOpenFisio(contenido)" > Forgot password? </button>
                   </div>
                 </form>
 
@@ -85,3 +86,54 @@
     </div>
   </div>
 </section>
+
+
+
+
+<ng-template #contenido let-modalF>
+  <!-- <div aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header"> -->
+
+<div id="pwdModal"  aria-labelledby="exampleModalLabel" role="dialog" aria-hidden="true">
+  <div class="modal-dialog"  role="document">
+  <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" style="position:absolute; margin-left:85%; margin-bottom: 30px;" aria-label="Close" (click)="modalF.close()"></button>
+
+          <h1 class="text-center">What's My Password?</h1>
+      </div>
+      <div class="modal-body">
+          <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                      <form (ngSubmit)="passwordAuth(Correo.value)">
+                        <div class="text-center">
+                          
+                          <p>If you have forgotten your password you can reset it here.</p>
+                            <div class="panel-body">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input class="form-control input-lg" style="margin-bottom: 5px;" placeholder="E-mail Address" name="email" type="email" #Correo >
+                                    </div>
+                                    <input class="btn btn-lg btn-primary btn-block" value="Send My Password" type="submit">
+                                </fieldset>
+                            </div>
+                        </div>
+                      </form>
+
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" (click)="modalF.close()" data-dismiss="modal" aria-hidden="true">Cancel</button>
+		  </div>	
+      </div>
+  </div>
+  </div>
+</div>
+</ng-template>

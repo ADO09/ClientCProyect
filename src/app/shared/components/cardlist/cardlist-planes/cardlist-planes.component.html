@@ -6,7 +6,7 @@
                 <div class="card-block">
                     <h6 class="m-b-20">Tiempo: {{dataPlan.tiempo}}</h6>
                     <h2 class="text-right"><i class="fa fa-credit-card f-left"></i><span>Nombre: {{dataPlan.nombre_plan}}</span></h2>
-                    <p class="m-b-0">Descripcion: {{dataPlan.descripcion}}<span class="f-right">{{dataPlan.id_plan}}</span></p>
+                    <p class="m-b-0">Descripcion: {{dataPlan.descripcion_plan}}<span class="f-right">{{dataPlan.id_plan}}</span></p>
                     <hr>
                     <p class="m-b-0">Diagnostico: {{dataPlan.diagnostico}}<span class="f-right">{{dataPlan.id_plan}}</span></p>
                     <hr>
@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Descripcion:</label>
                             <textarea class="form-control" id="message-text" #descripcion
-                                [value]="dataPlan.descripcion"></textarea>
+                                [value]="dataPlan.descripcion_plan"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Diagnostico:</label>
@@ -91,7 +91,7 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" (click)="modalF.close()"
                                 data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary" >Send message</button>
+                            <button type="submit" class="btn btn-primary" >Aceptar</button>
                         </div>
                     </form>
 

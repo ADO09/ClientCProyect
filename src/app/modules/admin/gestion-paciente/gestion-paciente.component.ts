@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '@data/services/api/user/users.service';
 import { cliTPinterface } from '@data/interfaces/Interfaces';
 import { enviroment as ENV } from './../../../../environments/enviroments.dev';
+import Swal from 'sweetalert2';
+import { MailerService } from '@data/services/api/mails/mailer.service';
 @Component({
   selector: 'app-gestion-paciente',
   templateUrl: './gestion-paciente.component.html',
@@ -30,13 +32,13 @@ export class GestionPacienteComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private modalService: NgbModal,
-    private userService:UsersService
-    
+    private userService:UsersService,
+    private mailerService:MailerService
     
   ) {
 
     this.userService.getAllUsersC().subscribe((r) => {
-      console.log(r);
+      console.log(r.data);
       this.clientesData = r.data;
     })
     this.formModificarCliente = fb.group( {
@@ -133,6 +135,62 @@ export class GestionPacienteComponent implements OnInit {
 
   eliminar(id:string){
     console.log("Eliminaste ID:",id)
+  }
+
+
+  banear(id:any,correo:any){
+
+    const formDataBneo =  new FormData();
+
+    formDataBneo.append('estatusCuenta',"2");
+    this.userService.updateClient(formDataBneo,id).subscribe( r => {
+      console.log(r);
+
+      if (!r.error) {
+        
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Cliente baneado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+        setTimeout( () => window.location.reload(),700);
+      }
+    })
+  }
+
+
+  
+  desbanear(id:any,correo:any){
+
+    const formMsgBaneo =  new FormData();
+    formMsgBaneo.append('correoDes',correo);
+    this.mailerService.messbaneoCuenta(formMsgBaneo).subscribe( r => {
+      console.log(r);
+    })
+
+    const formDataBneo =  new FormData();
+
+    formDataBneo.append('estatusCuenta',"1");
+    this.userService.updateClient(formDataBneo,id).subscribe( r => {
+      console.log(r);
+
+      if (!r.error) {
+        
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Cliente desbaneado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+        setTimeout( () => window.location.reload(),700);
+      }
+    })
+
   }
   url="";
   onselectFile(e:any){

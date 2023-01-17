@@ -1,8 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiResponse, ListFisioCard } from '@data/interfaces';
+import { MailerService } from '@data/services/api/mails/mailer.service';
 import { UsersService } from '@data/services/api/user/users.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 import { enviroment as ENV } from './../../../../environments/enviroments.dev';
 
 @Component({
@@ -29,10 +31,11 @@ export class GestionFisioComponent implements OnInit {
   constructor(
     private fb:FormBuilder,
     private modalService: NgbModal,
-    private userService:UsersService
+    private userService:UsersService,
+    private mailerService:MailerService
   ) {
 
-    this.userService.getAllUsersF().subscribe( r => {
+    this.userService.getAllUsersFCompletos().subscribe( r => {
       this.DataFisios = r.data;
       console.log(this.DataFisios);
       
@@ -197,6 +200,61 @@ export class GestionFisioComponent implements OnInit {
   }
 
 
+
+  banear(id:any,correo:any){
+
+    const formDataBneo =  new FormData();
+
+    formDataBneo.append('estatusCuenta',"2");
+    this.userService.updateFisio(formDataBneo,id).subscribe( r => {
+      console.log(r);
+
+      if (!r.error) {
+        
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Cliente baneado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+        setTimeout( () => window.location.reload(),700);
+      }
+    })
+  }
+
+
+  
+  desbanear(id:any,correo:any){
+
+    const formMsgBaneo =  new FormData();
+    formMsgBaneo.append('correoDes',correo);
+    this.mailerService.messbaneoCuenta(formMsgBaneo).subscribe( r => {
+      console.log(r);
+    })
+
+    const formDataBneo =  new FormData();
+
+    formDataBneo.append('estatusCuenta',"1");
+    this.userService.updateFisio(formDataBneo,id).subscribe( r => {
+      console.log(r);
+
+      if (!r.error) {
+        
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: 'Cliente desbaneado',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+        setTimeout( () => window.location.reload(),700);
+      }
+    })
+
+  }
   
   onselectFileC(e: any) {
     if (e.target.files) {

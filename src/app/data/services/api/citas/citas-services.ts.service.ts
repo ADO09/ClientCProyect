@@ -81,6 +81,26 @@ getCountCitasF(id?:number): Observable<{
       );
   }
 
+  getAllCitasFHISTORYBALANCE(id?:number): Observable<{
+    error: boolean,
+    msg: string,
+    data:  ListCitaCard[]
+  }> {
+
+    const response = { error: false, msg: 'AQUI ESTAN LOS DATOS', data: [] as ListCitaCard[] };
+    // console.log(API_ROUTES.CITASF.CITASFISIOHISTORY);
+    return this.http.get<{error:boolean,msg:string,data:ListCitaCard[]}>
+      (API_ROUTES.CITASF.CITASFISIOHISTORYBALANCE+id)
+      .pipe(delay(100),
+        map(r => {
+          
+          response.data= r.data;
+      
+          return response;
+        }),
+        catchError(() => of(response))
+      );
+  }
 
 
   getAllCitasFHISTORY(id?:number): Observable<{

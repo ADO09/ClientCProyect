@@ -54,6 +54,7 @@ export class ConfiguracionPacienteComponent implements OnInit {
      this.formModificarUsuario.controls['usuario_'].setValue(this.dataConfClient.usuario);
      this.formModificarUsuario.controls['contrasena_'].setValue(this.dataConfClient.contrasena);
      this.formModificarUsuario.controls['curp_'].setValue(this.dataConfClient.curp);
+     this.formModificarUsuario.controls['curp_'].disable();
       })
 
 
@@ -73,17 +74,17 @@ export class ConfiguracionPacienteComponent implements OnInit {
       ])],
       edad_:['',Validators.compose([
         Validators.required,
-        Validators.max(0)
+        Validators.min(12)
       ])],
       telefono_:['',Validators.compose([
+        Validators.required
+      ])],
+      correo_:['',Validators.compose([
         Validators.required,
         Validators.email
       ])],
-      correo_:['',Validators.compose([
-        Validators.required
-      ])],
       curp_:['',Validators.compose([
-        Validators.required
+        
       ])],
       usuario_:['',Validators.compose([
         Validators.required
@@ -92,7 +93,7 @@ export class ConfiguracionPacienteComponent implements OnInit {
         Validators.required
       ])],
       foto_:['',Validators.compose([
-        Validators.required
+        
       ])]
 
     })
@@ -103,11 +104,13 @@ export class ConfiguracionPacienteComponent implements OnInit {
 
   imagenFile(event: any): any {
     const ImagenFileArchivo: File = event.target.files[0];
-
+ //
     if (ImagenFileArchivo) {
-      this.formData.delete('fotografia');
+     
      this.formModificarUsuario.value.foto_ = ImagenFileArchivo;
-     this.formData.append('fotografia',ImagenFileArchivo);
+     
+     this.formData.delete('fotografia');
+     this.formData.append('fotografia',event.target.files[0]);
     }
 
   }
@@ -126,19 +129,21 @@ export class ConfiguracionPacienteComponent implements OnInit {
   subRegClient(){
     console.log( this.formModificarUsuario.value);
     
-    this.formData = new FormData()
+    
 
     this.formData.append('nombre',this.formModificarUsuario.value.nombre_);
     this.formData.append('apellido1',this.formModificarUsuario.value.apellido1_);
     this.formData.append('apellido2',this.formModificarUsuario.value.apellido2_);
-    this.formData.append('curp',this.formModificarUsuario.value.curp_);
+     this.formData.append('curp',this.dataConfClient.curp);
     this.formData.append('telefono',this.formModificarUsuario.value.telefono_);
     this.formData.append('correo',this.formModificarUsuario.value.correo_);
-    
+    console.log(this.formData.get('fotografia'));
     this.formData.append('edad',this.formModificarUsuario.value.edad_);
     this.formData.append('contrasena',this.formModificarUsuario.value.contrasena_);
     this.formData.append('usuario',this.formModificarUsuario.value.usuario_);
 
+    
+    
     Swal.fire({
       title: 'QUIERES GUARDAR LOS CAMBIOS?',
       showDenyButton: true,
@@ -154,7 +159,7 @@ export class ConfiguracionPacienteComponent implements OnInit {
             Swal.fire('Saved!', '', 'success')
             this.resPuptdClient = r.data;
             this.authService.setUserToLocalStorage(this.resPuptdClient);
-            setTimeout(() => window.location.reload(), 1500);
+             setTimeout(() => window.location.reload(), 1100);
           }else{
             Swal.fire(r.error+'!', '', 'error')
             this.formData.delete('nombre');

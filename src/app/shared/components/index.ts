@@ -7,6 +7,7 @@ import { CardlistCitasComponent } from './cardlist/cardlist-citas/cardlist-citas
 import { NgbdDatepickerPopupComponent } from './general/ngbd-datepicker-popup/ngbd-datepicker-popup.component';
 import { CardlistPlanesComponent } from './cardlist/cardlist-planes/cardlist-planes.component';
 import { ExpMedicoListComponent } from './list/exp-medico-list/exp-medico-list.component';
+import { CommentsCardComponent } from './cardlist/comments-card/comments-card.component';
 
 export const component:any[]=[
 
@@ -28,7 +29,8 @@ export const component:any[]=[
      //EXPEDIENTE MEDICO
      ExpMedicoListComponent,
 
-
+     //COMMENTS
+    CommentsCardComponent
     
 ];
 

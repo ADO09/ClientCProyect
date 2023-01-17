@@ -22,7 +22,7 @@ export class LeftNavComponent implements OnInit {
   // public name = 'andrea';
   // public position = 'gerente';
   // public avatar = 'assets/images/avatar.jpg';
-  public logo = 'assets/images/logo.png';
+  public logo = 'assets/imagenes/logo.png';
 
   public menus:IleftNavMenu[]= this.leftNavMenu.getLeftNavMenu;
   

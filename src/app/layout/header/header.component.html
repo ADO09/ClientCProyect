@@ -17,7 +17,7 @@
         </ng-container>
         
        
-        <fa-icon [icon]="faComment" class="dsc-header__submenu-icon"  ></fa-icon>
+        <fa-icon [icon]="faComment" [routerLink]="chat"  class="dsc-header__submenu-icon"  ></fa-icon>
         
         <div class="dsc-header__submenu-usr" (click)="perfil()" [ngStyle]="{'background-image': 'url('+ urlIMG +')'}"></div>
     </div>

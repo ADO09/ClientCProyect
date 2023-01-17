@@ -25,7 +25,7 @@
   </div>
   <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">Telefono:</span>
-    <input type="number" class="form-control"  aria-describedby="basic-addon1"  formControlName="telefono_">
+    <input type="tel" class="form-control" maxlength="12"  aria-describedby="basic-addon1"  formControlName="telefono_">
   </div>
   <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">Correo:</span>
@@ -33,11 +33,11 @@
   </div>
   <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">RFC:</span>
-    <input type="text" class="form-control"  aria-describedby="basic-addon1" formControlName="RFC_">
+    <input type="text" class="form-control"   aria-describedby="basic-addon1" formControlName="RFC_" >
   </div>
   <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">Telefono de casa:</span>
-    <input type="number" class="form-control"  aria-describedby="basic-addon1"  formControlName="telefono_casa_">
+    <input type="tel" class="form-control" maxlength="12"  aria-describedby="basic-addon1"  formControlName="telefono_casa_">
   </div>
   <div class="RegistrarseSubmit">
 </div>
@@ -88,13 +88,19 @@
     <input type="text" class="form-control"  aria-describedby="basic-addon1" formControlName="contrasena_">
   </div>
 
-  <img [src]="urlimg" width="180" height="180"><br><br>
+
+   <hr>
+    <div class="RegistrarseSubmit" style="text-align: center;">
+      <img [src]="urlimg" style="margin: 0 auto; border: 0.5px solid black; border-radius: 8px;  " width="180" height="180">
+  </div>
+ 
+  <br>
   <div class="input-group mb-3">
     <span class="input-group-text" id="basic-addon1">Fotografia:</span>
     <input type="file" (change)="onselectFile($event)" class="form-control"  aria-describedby="basic-addon1" formControlName="foto_" accept="image/*">
   </div>
   <div class="button">
-    <button type="submit" style="margin: 5px" class="btn btn-primary">GUARDAR</button>
+    <button type="submit" style="margin: 5px" class="btn btn-primary" [disabled]="!formModificarUsuario.valid" >GUARDAR</button>
     <button type="button" style="margin: 5px" class="btn btn-danger" [routerLink]="'/inicio'">CANCELAR</button>
   </div>
   

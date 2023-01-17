@@ -141,3 +141,6 @@ position: relative;
     border-bottom-right-radius: .3rem;
     }
     }
+
+
+    .modal-footer {   border-top: 0px; }

@@ -4,14 +4,14 @@
 
     <div class="dsc-left-nav-brand__logo">
         <img src="{{logo}}" alt="designicode-logo"/>
-        <span>Netflix</span>
+        <span>Fisiolines</span>
     </div>
 </div>
 <div class="dsc-left-nav-usr" *ngIf="this.authService.getUser">
 
     <div class="dsc-left-nav-usr__avatar" [ngStyle]="{'background-image': 'url('+ urlIMG +')'}"></div>
     <h4 class="dsc-left-nav-usr__name">{{this.authService.getUser.nombre}}</h4>
-    <h6 class="dsc-left-nav-usr__position">{{this.authService.getUser.correo}}</h6>
+    <p style="font-size: 13px;" class="dsc-left-nav-usr__position">{{this.authService.getUser.correo}}</p>
 </div>
 
 <ng-container *ngFor="let menu of menus" >

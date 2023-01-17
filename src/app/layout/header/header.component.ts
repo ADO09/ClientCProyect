@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   public faBars = faBars;
   public faBell = faBell;
   public faComment = faComment;
+  public chat = INTERNAL_ROUTES.MODULO_CHAT;
   public avatar = 'assets/images/avatar.jpg';
   public logo = 'assets/imagenes/logo.png';
   public numCitas = 0;

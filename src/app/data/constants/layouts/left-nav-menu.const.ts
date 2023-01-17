@@ -46,7 +46,8 @@ export class LEFT_NAV_MENUSCLASS{
                         {
                             id:3,
                             icon:faComment,
-                            name:'Comentarios'
+                            name:'Chat',
+                            link:INTERNAL_ROUTES.MODULO_CHAT
                         },
                     ]
                 },
@@ -138,7 +139,9 @@ export class LEFT_NAV_MENUSCLASS{
                         {
                             id:3,
                             icon:faComment,
-                            name:'Comentarios'
+                            name:'Chat',
+                            link:INTERNAL_ROUTES.MODULO_CHAT
+                            
                         },
                     ]
                 },

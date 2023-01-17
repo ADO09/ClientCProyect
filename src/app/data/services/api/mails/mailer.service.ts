@@ -56,6 +56,32 @@ export class MailerService {
   }
 
 
+  
+  MessageForgotPassword(correo:any): 
+  Observable<{
+    error: boolean;
+    msg: string;
+  }> {
+
+     console.log(API_ROUTES.MAILER.MAILERFORGOTPASSWORD + correo);
+    const response = { error: false, msg: '' };
+    return this.http.get<{error:boolean ,msg:string}>
+      (API_ROUTES.MAILER.MAILERFORGOTPASSWORD + correo)
+      .pipe(delay(100),
+        map(r => {
+          // console.log(data)
+          response.error = r.error;
+          response.msg = r.msg;
+          return response;
+        }),
+        catchError(() => of(response))
+      );
+  }
+
+
+
+
+
   MessageAcptClient(data:any): 
   Observable<{
     error: boolean;
@@ -66,6 +92,28 @@ export class MailerService {
     // console.log(API_ROUTES.PLANES.PLANESONEFISIO);
     return this.http.post<{error:boolean ,msg:string  }>
       (API_ROUTES.MAILER.MAILERACPTCLIENT,data)
+      .pipe(delay(100),
+        map(r => {
+          response.error = r.error;
+          response.msg = r.msg;
+          return response;
+        }),
+        catchError(() => of(response))
+      );
+  }
+
+
+
+  messbaneoCuenta(data:any): 
+  Observable<{
+    error: boolean;
+    msg: string;
+  }> {
+
+    const response = { error: false, msg: '' };
+    // console.log(API_ROUTES.PLANES.PLANESONEFISIO);
+    return this.http.post<{error:boolean ,msg:string  }>
+      (API_ROUTES.MAILER.MAILERBANEOCUENTA,data)
       .pipe(delay(100),
         map(r => {
           response.error = r.error;

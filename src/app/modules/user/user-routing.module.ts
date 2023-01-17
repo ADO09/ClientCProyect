@@ -17,6 +17,8 @@ import { GestionFisioComponent } from '@modules/admin/gestion-fisio/gestion-fisi
 import { GestionPacienteComponent } from '@modules/admin/gestion-paciente/gestion-paciente.component';
 import { ConfiguracionFisioComponent } from './configuracion-fisio/configuracion-fisio.component';
 import { BalanceGListComponent } from './balance-glist/balance-glist.component';
+import { ChatComponent } from './chat/chat.component';
+
 
 const routes: Routes = [
 
@@ -98,6 +100,11 @@ const routes: Routes = [
   {
     path:'BalanceGList',
     component:BalanceGListComponent,
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'chat',
+    component:ChatComponent,
     canActivate:[AuthGuard]
   },
 ];

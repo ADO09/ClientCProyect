@@ -2,13 +2,16 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { INTERNAL_ROUTES } from '@data/constants/routes';
-import { ListFisioCard } from '@data/interfaces';
+import { comment, ListFisioCard } from '@data/interfaces';
 import { CitasServicesTsService } from '@data/services/api/citas/citas-services.ts.service';
 import { ApiService } from '@data/services/api/login/api.service';
 import { UsersService } from '@data/services/api/user/users.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { enviroment as ENV } from 'environments/enviroments.dev';
 import Swal from 'sweetalert2';
+
+import {formatDate} from '@angular/common';
+
 @Component({
   selector: 'app-list-fisiocard',
   templateUrl: './list-fisiocard.component.html',
@@ -19,8 +22,13 @@ export class ListFisiocardComponent implements OnInit {
   public condUser = '';
   public urlIMG = ENV.urlAPI;
   public formRegistroCita!: FormGroup;
+  public formComent!:FormGroup;
+  public formDataComment = new FormData();
   public formData = new FormData();
   public actPuntuacion!:any;
+  public dataComment: comment[] = [];
+  public commentBool:any;
+  public   mydate =  new Date();
   @Input() data!:ListFisioCard;
   @Input() favBoleano!:boolean;
    perfilFisio = `${INTERNAL_ROUTES.MODULO_PERFILFISIOS}`;
@@ -29,12 +37,15 @@ export class ListFisiocardComponent implements OnInit {
     private userService:UsersService,
     private authService:ApiService,
     public modalC:NgbModal,
+    public modalCOM:NgbModal,
     public citaService:CitasServicesTsService,
     private fb: FormBuilder,
-    private router:Router
+    private router:Router,
+    
   ) { 
      console.log(this.perfilFisio);
 
+  
      this.formRegistroCita = fb.group({
       fecha: ['', Validators.compose([
         Validators.required
@@ -61,6 +72,14 @@ export class ListFisiocardComponent implements OnInit {
         this.condUser ='1'
     
      }
+
+
+
+     this.formComent = fb.group({
+      comentario: ['', Validators.compose([
+        Validators.required
+      ])],
+     })
     //console.log(+this.data.id_fisio!);
   }
 
@@ -201,4 +220,87 @@ export class ListFisiocardComponent implements OnInit {
     
   }
 
+  ModalOpenComment(contenidoCOM:any){
+
+    console.log(this.data.id_fisio);
+    
+
+    this.userService.getoneComentsF(this.data.id_fisio!).subscribe( r => {
+      console.log(r);
+
+      this.dataComment = r.data;
+      
+      if (this.dataComment.length > 0) {
+        this.commentBool = true;
+      } else {
+        this.commentBool = false;
+      }
+    
+
+      console.log(this.dataComment.length)
+    })
+    this.modalCOM.open(contenidoCOM,{centered:true})
+  }
+
+
+
+
+
+  addcoment(){
+    console.log(this.formComent.value)
+    
+   
+    // console.log(formatDate(new Date(), 'yyyy/MM/dd hh:mm:ss' , 'en'))
+
+    const idF:any = this.data.id_fisio;
+
+    
+    this.formDataComment.append('id_fisio',idF);
+
+    if (this.authService.getUser.TipoUsuario ==  'admin' ) {
+      const idFc:any = this.authService.getUser.id_fisio;
+      this.formDataComment.append('id_fisioCom',idFc);
+    }
+    if (this.authService.getUser.TipoUsuario ==  'fisioterapeuta' ) {
+      const idFc:any = this.authService.getUser.id_fisio;
+      this.formDataComment.append('id_fisioCom',idFc);
+    } else {
+      const idCc:any = this.authService.getUser.id_cliente;
+     
+      this.formDataComment.append('id_clienteCom',idCc)
+    }
+    this.formDataComment.append('comentario',this.formComent.value.comentario);
+    this.formDataComment.append('fecha',formatDate(new Date(), 'yyyy/MM/dd hh:mm:ss' , 'en'));
+  
+
+  
+    
+
+    this.userService.AddnewCommentF(this.formDataComment).subscribe(r => {
+      console.log(r);
+
+      if (!r.error) {
+
+
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Agregado con exito',
+          showConfirmButton: false,
+          timer: 500
+        })
+      
+        this.dataComment
+        
+        this.formDataComment.delete('comentario')
+        this.formDataComment.delete('fecha')
+        this.formDataComment.delete('id_clienteCom')
+        this.formDataComment.delete('id_fisioCom')
+        this.formDataComment.delete('id_fisio')
+      
+       setTimeout(() => this.modalCOM.dismissAll(),300);  
+      }
+    })
+    //this.formDataComment.append('id_fisio',this.data.id_fisio);
+  }
 }

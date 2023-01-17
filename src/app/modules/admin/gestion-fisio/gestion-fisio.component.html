@@ -16,6 +16,8 @@
             <th scope="col">Telefono</th>
             <th scope="col">Puntuacion</th>
             <th scope="col">Correo</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Opciones</th>
 
           </tr>
         </thead>
@@ -31,12 +33,21 @@
             <td>{{post.telefono}}</td>
             <td>{{post.puntuacion}}</td>
             <td>{{post.correo}}</td>
+            <td id="estatus">{{post.estatusCuenta}}</td>
 
             <td>
-            <div class="button">
-                <button type="submit" style="margin: 5px" class="btn btn-primary" (click)="mostrarModalInfo(post)">MODIFICAR</button>
+              <div class="button">
+                <button style="margin: 5px" class="btn btn-primary" (click)="mostrarModalInfo(post)">MODIFICAR</button>
                 <button type="button" style="margin: 5px" class="btn btn-danger" (click)="eliminar(post.id_fisio)">ELIMINAR</button>
-              </div>
+                <ng-container *ngIf="post.estatusCuenta == '1' ">
+                  <button type="button" style="margin: 5px" class="btn btn-warning" (click)="banear(post.id_fisio,post.correo)">BANEAR</button>
+                </ng-container>
+
+
+                <ng-container *ngIf="post.estatusCuenta == '2' ">
+                  <button type="button" style="margin: 5px" class="btn btn-success" (click)="desbanear(post.id_fisio,post.correo)">DESBANEAR</button>                
+                </ng-container>
+                  </div>
             </td>
         </tr>
         </tbody>

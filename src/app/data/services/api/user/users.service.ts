@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { API_ROUTES, INTERNAL_ROUTES } from '@data/constants/routes';
-import { cliTPinterface, ListFisioCard } from '@data/interfaces';
+import { cliTPinterface, comment, ListFisioCard } from '@data/interfaces';
 import { ApiClass } from '@data/schema/apiClass.class';
 import { catchError, delay, map, Observable, of } from 'rxjs';
 import Swal from 'sweetalert2';
@@ -21,6 +21,30 @@ export class UsersService extends ApiClass {
     
     ) {
     super();
+  }
+
+
+  
+  getAllUsersFCompletos(): 
+  Observable<{
+    error: boolean;
+    msg: string;
+    data:  any;
+  }> {
+
+    const response = { error: false, msg: '', data: [] as ListFisioCard[] };
+    console.log(this.url+'clientesF/completos');
+    return this.http.get<{error:boolean ,msg:string ,data:ListFisioCard[] }>
+      (this.url+'clientesF/completos')
+      .pipe(delay(100),
+        map(r => {
+          response.error = r.error;
+          response.data= r.data;
+          response.msg = r.msg;
+          return response;
+        }),
+        catchError(() => of(response))
+      );
   }
 
   getAllUsersF(): 
@@ -367,6 +391,55 @@ export class UsersService extends ApiClass {
 
 
 
+
+
+
+  getoneComentsF(id:number): Observable<{
+    error: boolean,
+    msg: string,
+    data:   comment[]
+  }> {
+
+    const response = { error: false, msg: '', data: [] as comment[] };
+   
+    return this.http.get<{error:boolean ,msg:string ,data: comment[] }>
+      (API_ROUTES.COMMENTSF.COMMENTS+id)
+      .pipe(
+        map(r => {
+       
+          response.msg = r.msg;
+          response.error = r.error;
+          response.data = r.data;
+          return response;
+        }),
+        catchError(() => of(response))
+      );
+  }
+
+
+
+
+  AddnewCommentF(data:any): Observable<{
+    error: boolean,
+    msg: string,
+    data:   any
+  }> {
+
+    const response = { error: false, msg: '', data: {} as any};
+   
+    return this.http.post<{error:boolean ,msg:string ,data: any }>
+      (API_ROUTES.COMMENTSF.ADDCOMMENTS,data)
+      .pipe(
+        map(r => {
+       
+          response.msg = r.msg;
+          response.error = r.error;
+          response.data = r.data;
+          return response;
+        }),
+        catchError(() => of(response))
+      );
+  }
   
 }
 

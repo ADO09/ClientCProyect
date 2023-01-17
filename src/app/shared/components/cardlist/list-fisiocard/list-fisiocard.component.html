@@ -1,78 +1,78 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
-    integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+  integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
 
 <div class="container">
 
-    <div class="data" *ngIf="data"  >
-        <section class="" >
-            <div class="container py-3 h-100">
+  <div class="data" *ngIf="data">
+    <section class="">
+      <div class="container py-3 h-100">
 
-              <div class="row d-flex  h-100">
-               
-                  <div class="card" style="border-radius: 15px; background-color: #e4d6aa; height: 70%;">
-                    <div class="card-body p-4 text-black">
-                      <div>
-                        <h6 class="mb-4">{{data.nombre}}</h6>
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                          <p class="small mb-0"><i class="far fa-clock me-2"></i>{{data.disponibilidad}}</p>
-                          <p class="fw-bold mb-0">${{data.precio}}</p>
-                        </div>
-                      </div>
-                      <div class="d-flex align-items-center mb-4">
-                        <div class="flex-shrink-0">
-                          <img src="{{urlIMG}}{{data.fotografia}} "
-                            alt="img" class="img-fluid rounded-circle border border-dark border-3"
-                            style="width: 95px; height: 100px; ">
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                          <div class="d-flex flex-row align-items-center mb-2">
-                            <p class="mb-0 me-2">Edad: {{data.edad}}</p>
-                            <p class="mb-0 me-2" style="font-size: 20px; margin-left: 3px;" >  <i class="bi bi-heart-fill" style="color: red;"></i> {{data.puntuacion}}</p>
-                          </div>
-                          <div>
-                            <ng-container *ngIf="condUser == '1'" >
-                              <ng-container *ngIf="!favBoleano" >
-                                <button type="button" class="btn btn-outline-dark btn-rounded btn-sm" (click)="add(data.id_fisio) "
-                                data-mdb-ripple-color="dark">+ ADD</button>
-                              </ng-container>
-                              <ng-container *ngIf="favBoleano" >
-                                <button type="button" class="btn btn-outline-dark btn-rounded btn-sm" (click)="elm(data.id_fisio) "
-                                data-mdb-ripple-color="dark">- ELM</button>
-                              </ng-container>
-                             
-                            </ng-container>
-                            
-                            <button type="button" class="btn btn-outline-dark btn-rounded btn-sm"
-                              data-mdb-ripple-color="dark" routerLink="{{perfilFisio}}{{data.id_fisio}}">See profile</button>
-                            <button type="button" class="btn btn-outline-dark btn-floating btn-sm"
-                              data-mdb-ripple-color="dark"><i class="fas fa-comment"></i></button>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      
-                      <ng-container *ngIf="condUser=='1'" >
-                        <hr>
-                        <button type="button" class="btn btn-success btn-rounded btn-block btn-lg"  (click)="ModalOpenCliente(contenidoC)" ><i
-                          class="far fa-clock me-2"></i>Solicitar cita
-                        </button>
+        <div class="row d-flex  h-100">
+
+          <div class="card" style="border-radius: 15px; background-color: #e4d6aa; height: 70%;">
+            <div class="card-body p-4 text-black">
+              <div>
+                <h6 class="mb-4">{{data.nombre}}</h6>
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                  <p class="small mb-0"><i class="far fa-clock me-2"></i>{{data.disponibilidad}}</p>
+                  <p class="fw-bold mb-0">${{data.precio}}</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-4">
+                <div class="flex-shrink-0">
+                  <img src="{{urlIMG}}{{data.fotografia}} " alt="img"
+                    class="img-fluid rounded-circle border border-dark border-3" style="width: 95px; height: 100px; ">
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <div class="d-flex flex-row align-items-center mb-2">
+                    <p class="mb-0 me-2">Edad: {{data.edad}}</p>
+                    <p class="mb-0 me-2" style="font-size: 20px; margin-left: 3px;"> <i class="bi bi-heart-fill"
+                        style="color: red;"></i> {{data.puntuacion}}</p>
+                  </div>
+                  <div>
+                    <ng-container *ngIf="condUser == '1'">
+                      <ng-container *ngIf="!favBoleano">
+                        <button type="button" class="btn btn-outline-dark btn-rounded btn-sm"
+                          (click)="add(data.id_fisio) " data-mdb-ripple-color="dark">+ ADD</button>
+                      </ng-container>
+                      <ng-container *ngIf="favBoleano">
+                        <button type="button" class="btn btn-outline-dark btn-rounded btn-sm"
+                          (click)="elm(data.id_fisio) " data-mdb-ripple-color="dark">- ELM</button>
                       </ng-container>
 
-                      <!-- <ng-template #datosEnv>
-                        <h2>aposjdpoasd</h2>
-                        [routerLink]="regCita + data.id_fisio"
-                      </ng-template> -->
-                     
-                    </div>
+                    </ng-container>
+
+                    <button type="button" class="btn btn-outline-dark btn-rounded btn-sm" data-mdb-ripple-color="dark"
+                      routerLink="{{perfilFisio}}{{data.id_fisio}}">See profile</button>
+                    <button type="button" class="btn btn-outline-dark btn-floating btn-sm" data-mdb-ripple-color="dark"
+                      (click)="ModalOpenComment(contenidoCOM)"><i class="fas fa-comments"></i></button>
                   </div>
-                
+                </div>
               </div>
 
 
-            </div>
-          </section>
+              <ng-container *ngIf="condUser=='1'">
+                <hr>
+                <button type="button" class="btn btn-success btn-rounded btn-block btn-lg"
+                  (click)="ModalOpenCliente(contenidoC)"><i class="far fa-clock me-2"></i>Solicitar cita
+                </button>
+              </ng-container>
 
-    </div>
+              <!-- <ng-template #datosEnv>
+                        <h2>aposjdpoasd</h2>
+                        [routerLink]="regCita + data.id_fisio"
+                      </ng-template> -->
+
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </section>
+
+  </div>
 
 </div>
 
@@ -83,74 +83,162 @@
 
 <ng-template #contenidoC let-modalC>
   <div aria-labelledby="exampleModalLabel">
-      <div class="modal-dialog" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">SOLICITUD DE CITA</h5>
-                  <button type="button" class="btn btn-secondary" (click)="modalC.dismiss()" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                  </button>
-              </div>
-              <div class="modal-body">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">SOLICITUD DE CITA</h5>
+          <button type="button" class="btn btn-secondary" (click)="modalC.dismiss()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
 
-                  <form [formGroup]="formRegistroCita" (ngSubmit)="subregCit()" errorTailor
-                      class="form-submitted">
-                      <div class="form-group">
-                          <label for="recipient-name" class="col-form-label"  >Fecha:</label>
+          <form [formGroup]="formRegistroCita" (ngSubmit)="subregCit()" errorTailor class="form-submitted">
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Fecha:</label>
 
-                          <input type="date" class="form-control" name="fecha" formControlName="fecha">
+              <input type="date" class="form-control" name="fecha" formControlName="fecha">
 
 
-                      </div>
-                      <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">Hora:</label>
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Hora:</label>
 
-                          <input type="time" class="form-control" id="recipient-name" name="time" formControlName="hora">
-                      </div>
-                      <div class="form-group">
-                          <label for="message-text" class="col-form-label">Descripcion:</label>
-                          <textarea class="form-control" id="message-text" formControlName="descripcion" ></textarea>
-                      </div>
-                      <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">Direccion:</label>
-                          <input type="text" class="form-control" id="recipient-name" formControlName="direccion" >
-                      </div>
-                      <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">Tipo de consulta:</label>
-                          <input type="text" class="form-control" id="recipient-name" formControlName="tipo_consulta" >
-                      </div>
-                      <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">Nombre de fisioterapeuta</label>
-                          <input type="text" class="form-control" id="recipient-name" [value]="data.nombre + ' ' + data.apellido1"  disabled>
-                      </div>
-                      
-                      <div class="form-group">
-                          <label for="recipient-name" class="col-form-label">RFC de fisioterapeuta</label>
-                          <input type="text" class="form-control" id="recipient-name" [value]="data.RFC" disabled>
-                      </div>
+              <input type="time" class="form-control" id="recipient-name" name="time" formControlName="hora">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Descripcion:</label>
+              <textarea class="form-control" id="message-text" formControlName="descripcion"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Direccion:</label>
+              <input type="text" class="form-control" id="recipient-name" formControlName="direccion">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Tipo de consulta:</label>
+              <input type="text" class="form-control" id="recipient-name" formControlName="tipo_consulta">
+            </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Nombre de fisioterapeuta</label>
+              <input type="text" class="form-control" id="recipient-name" [value]="data.nombre + ' ' + data.apellido1"
+                disabled>
+            </div>
 
-                      <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Precio de cita:</label>
-                        <input type="text" class="form-control" id="recipient-name" [value]="data.precio" disabled>
-                    </div>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">RFC de fisioterapeuta</label>
+              <input type="text" class="form-control" id="recipient-name" [value]="data.RFC" disabled>
+            </div>
 
-                      <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary"  (click)="modalC.close()"
-                              data-dismiss="modal">Cancel</button>
-                          <button type="submit" class="btn btn-primary" [disabled]="!formRegistroCita.valid"  >Solicitar cita</button>
-                      </div>
-                  </form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Precio de cita:</label>
+              <input type="text" class="form-control" id="recipient-name" [value]="data.precio" disabled>
+            </div>
 
-              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="modalC.close()"
+                data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" [disabled]="!formRegistroCita.valid">Solicitar cita</button>
+            </div>
+          </form>
 
-          </div>
+        </div>
+
       </div>
+    </div>
   </div>
 </ng-template>
 
 
 
 
+
+<ng-template #contenidoCOM let-modalCOM  >
+
+  <div aria-labelledby="exampleModalLabel"  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+
+
+          <hr>
+          <div class="overflow-auto   " style="height: 180px; width:100%;">
+            <div class="card example-1 scrollbar-ripe-malinka" style="height: 180px; width:100%;">
+
+              <div class="container bootstrap snippets bootdey">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="blog-comment" >
+                      <h3 class="text-success">Comments</h3>
+                      <hr>
+                      <ul class="comments">
+
+                        <ng-container *ngIf="commentBool  else noHayComments"  >
+
+                          <ng-container   *ngFor="let coment of dataComment"  >
+
+
+                            <li class="clearfix">
+                              
+                                <img src="http://localhost:3000{{coment.fotografia}}" class="avatar" alt="">
+                                <div class="post-comments">
+                                  <p class="meta">{{coment.fecha | date:'medium'}} <ng-container *ngIf="coment.id_fisioCom == 0"> <a href="http://localhost:4200/panel/userauth/perfilUserC/{{coment.id_clienteCom}}"> {{coment.nombre}}</a> </ng-container> <ng-container *ngIf="coment.id_clienteCom == 0"> <a href="http://localhost:4200/panel/userauth/perfilUserf/{{coment.id_fisioCom}}"> {{coment.nombre}}</a> </ng-container> says : <i class="pull-right"><a
+                                        ><ng-container *ngIf="coment.id_fisioCom == 0"> <small>Cliente</small></ng-container>
+                                        <ng-container *ngIf="coment.id_clienteCom == 0"> <small>fisio</small></ng-container>
+                                                 </a></i></p>
+                                  <p>
+                                    {{coment.comentario}}
+                                  </p>
+                                </div>
+                             
+                          
+                            </li>
+                           <hr>
+                          </ng-container>
+                          
+                        </ng-container>
+                      <ng-template #noHayComments>
+                        <li>No hay comentarios</li>
+                        <hr>
+                      </ng-template>
+                     
+
+                      </ul>
+                    
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+            </div>
+          </div>
+
+          
+          <!-- <div class="overflow-auto" style="height: 180px; width:100%; background:red">
+
+
+                </div> -->
+
+
+        </div>
+        <form [formGroup]="formComent"  (ngSubmit)="addcoment()">
+
+          <div class="form-group">
+            <label  style="margin-left: 10px; " for="exampleFormControlTextarea1">Comenta algo</label>
+            <textarea maxlength="80" style="margin: 6px; width: 90%;" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="comentario" formControlName="comentario" ></textarea>
+            <button type="submit"style="margin: 6px; margin-bottom:5px; width: 40%;" [disabled]="!formComent.valid" slot="end" class="btn btn-success">Comentar</button>
+            <button type="button"style="margin: 6px; margin-bottom:5px; width: 40%;"  slot="end" class="btn btn-secondary" (click)="modalCOM.close()" >Cancelar</button>
+          </div>
+        </form>
+       
+
+        
+      </div>
+    </div>
+  </div>
+</ng-template>
 
 
 

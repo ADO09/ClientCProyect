@@ -25,11 +25,11 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
       useClass:ErrorInterceptorAPI,
       multi:true
     },
-    {
-      provide:HTTP_INTERCEPTORS,
-      useClass:JwtInterceptor,
-      multi:true
-    }
+    // {
+    //   provide:HTTP_INTERCEPTORS,
+    //   useClass:JwtInterceptor,
+    //   multi:true
+    // }
   ]
 })
 export class CoreModule { }

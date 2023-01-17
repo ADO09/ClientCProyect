@@ -17,7 +17,7 @@ export class BalanceGListComponent implements OnInit {
     private citaService:CitasServicesTsService
   ) {
 
-    this.citaService.getAllCitasFHISTORY(this.authService.getUser.id_fisio).subscribe( r => {
+    this.citaService.getAllCitasFHISTORYBALANCE(this.authService.getUser.id_fisio).subscribe( r => {
 
       console.log(r);
       
@@ -29,7 +29,21 @@ export class BalanceGListComponent implements OnInit {
 
         console.log(element.costo)
         this.totalCostoCita+= element.costo;
+        
+
       });
+
+
+
+      var table:any = document.getElementById("tableBalance"),
+      
+      sumVal = 0;
+      // for (var i = 1; i < table?.rows.length; i++) {
+      //   sumVal = sumVal + parseFloat(table?.rows[i].cells[10].innerHTML);
+      // }
+      console.log(sumVal);
+    
+      console.log(table?.rows[1][10]);
     })
 
 

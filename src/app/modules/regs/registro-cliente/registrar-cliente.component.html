@@ -64,7 +64,7 @@
           <!--<img src="./../../../assets/imagenes/email.png"  width="35" height="35" alt="..." />-->
         <img src="https://cdn-icons-png.flaticon.com/512/3494/3494619.png"  width="35" height="35" alt="..." /><label for="Email1"class="input-group-text">Email</label>
           <input type="email" class="form-control" id="Email1" aria-describedby="emailHelp" 
-              formControlName="correo" />
+              formControlName="correo" placeholder="gmail" />
           <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           <small style="width: 100%;" class="bg-danger text-light mt-1  px-2 py-1 rounded "
           *ngIf="(fm['correo'].dirty || fm['correo'].touched) && fm['correo'].errors">

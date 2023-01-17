@@ -5,6 +5,7 @@ import { INTERNAL_ROUTES } from '@data/constants/routes';
 import { ApiResponse, ListFisioCard } from '@data/interfaces';
 import { ApiService } from '@data/services/api/login/api.service';
 import { UsersService } from '@data/services/api/user/users.service';
+import { faWindowRestore } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 import { enviroment as ENV } from './../../../../environments/enviroments.dev';
 
@@ -43,41 +44,41 @@ export class ConfiguracionFisioComponent implements OnInit {
       ])],
       edad_: ['', Validators.compose([
         Validators.required,
-        Validators.max(0)
+        Validators.min(12)
       ])],
       direccion_: ['', Validators.compose([
         Validators.required
       ])],
       telefono_: ['', Validators.compose([
+        Validators.required
+      ])],
+      correo_: ['', Validators.compose([
         Validators.required,
         Validators.email
       ])],
-      correo_: ['', Validators.compose([
-        Validators.required
-      ])],
       RFC_: ['', Validators.compose([
-        Validators.required
+        
       ])],
       telefono_casa_: ['', Validators.compose([
         Validators.required
       ])],
       cedula_: ['', Validators.compose([
-        Validators.required
+        
       ])],
       titulo_: ['', Validators.compose([
-        Validators.required
+        
       ])],
       certificados_: ['', Validators.compose([
-        Validators.required
+       
       ])],
       especialidades_: ['', Validators.compose([
-        Validators.required
+       
       ])],
       anos_exp_: ['', Validators.compose([
         Validators.required
       ])],
       evidencia_: ['', Validators.compose([
-        Validators.required
+        
       ])],
       disponibilidad_: ['', Validators.compose([
         Validators.required
@@ -93,7 +94,7 @@ export class ConfiguracionFisioComponent implements OnInit {
       ])],
 
       foto_: ['', Validators.compose([
-        Validators.required
+       
       ])],
 
     })
@@ -115,6 +116,7 @@ export class ConfiguracionFisioComponent implements OnInit {
       this.formModificarUsuario.controls['telefono_'].setValue(this.dataFisio.telefono);
       this.formModificarUsuario.controls['correo_'].setValue(this.dataFisio.correo);
       this.formModificarUsuario.controls['RFC_'].setValue(this.dataFisio.RFC);
+      this.formModificarUsuario.controls['RFC_'].disable();
       this.formModificarUsuario.controls['telefono_casa_'].setValue(this.dataFisio.telefono_casa);
       this.formModificarUsuario.controls['anos_exp_'].setValue(this.dataFisio.anos_exp);
       this.formModificarUsuario.controls['disponibilidad_'].setValue(this.dataFisio.disponibilidad);
@@ -135,7 +137,7 @@ export class ConfiguracionFisioComponent implements OnInit {
     this.formData.append('direccion',this.formModificarUsuario.value.direccion_);
     this.formData.append('telefono',this.formModificarUsuario.value.telefono_);
     this.formData.append('correo',this.formModificarUsuario.value.correo_);
-    this.formData.append('RFC',this.formModificarUsuario.value.RFC_);
+    this.formData.append('RFC',this.dataFisio.RFC);
     this.formData.append('telefono_casa',this.formModificarUsuario.value.telefono_casa_);
     this.formData.append('anos_exp',this.formModificarUsuario.value.anos_exp_);
     this.formData.append('precio',this.formModificarUsuario.value.precio_);
@@ -164,7 +166,8 @@ export class ConfiguracionFisioComponent implements OnInit {
             this.resPuptdFisio = r.data;
             console.log(this.resPuptdFisio);
             this.authService.setUserToLocalStorage(this.resPuptdFisio);
-              setTimeout(() => this.router.navigateByUrl(INTERNAL_ROUTES.MODULO_PERFILFISIOS + this.authService.getUser.id_fisio), 1500);
+              setTimeout(() => window.location.reload(),500 );
+              //setTimeout(() => this.router.navigateByUrl(INTERNAL_ROUTES.MODULO_PERFILFISIOS + this.authService.getUser.id_fisio), 2000);
           }else{
             Swal.fire(r.msg+'!', '', 'error')
              // this.formData.delete('fotografia');

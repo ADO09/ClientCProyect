@@ -1,4 +1,5 @@
 import { Component, Input, OnInit,NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 import { INTERNAL_ROUTES } from '@data/constants/routes';
 
 import { ListCitaCard, ListCitaCardC, ListPlanCard } from '@data/interfaces';
@@ -6,6 +7,8 @@ import { CitasServicesTsService } from '@data/services/api/citas/citas-services.
 import { ApiService } from '@data/services/api/login/api.service';
 import { MailerService } from '@data/services/api/mails/mailer.service';
 import { PlanesRehabilitacionService } from '@data/services/api/planes/planes-rehabilitacion.service';
+import { ChatService } from '@data/services/chatfirebase/chat.service';
+
 import { NgbModal,NgbDatepicker,NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { delay } from 'rxjs';
 import Swal from 'sweetalert2'
@@ -38,7 +41,10 @@ export class CardlistCitasComponent implements OnInit {
     public modalC:NgbModal,
     public citasService:CitasServicesTsService,
     public planesService:PlanesRehabilitacionService,
-    public mailService:MailerService
+    public mailService:MailerService,
+    // private chatComponent:ChatComponent,
+    private chatService:ChatService,
+    private router:Router
   ) {
 
     const Swal = require('sweetalert2')
@@ -99,9 +105,24 @@ if (this.authService.getUser.TipoUsuario == 'fisioterapeuta') {
   }
 
   ModalOpenFisio(contenido:any){
-     
+     console.log(this.data)
     this.modalF.open(contenido,{centered:true})
     
+  }
+  dataIdPlanChange(e:any){
+
+    if (this.data.id_plan === 0) {
+      console.log(e.target.value);
+    this.data.id_plan = e.target.value;
+    }
+    
+  }
+
+  cancid_plan(){
+    if (this.data.id_plan === 0) {
+      this.data.id_plan = 0;
+    }
+   
   }
 
   // ,costo:any
@@ -115,7 +136,12 @@ if (this.authService.getUser.TipoUsuario == 'fisioterapeuta') {
     this.formData.append('tipo_consulta',tipo_consulta);
     this.formData.append('estatus', this.data.estatus);
     this.formData.append('direccion',direccion);
-    this.formData.append('id_plan',id_plan);
+
+    if (id_plan != '---Select a plan---') {
+      this.formData.append('id_plan',id_plan);
+      console.log(id_plan)
+    }
+   
     // this.formData.append('costo',id_plan);
     Swal.fire({
       title: 'Do you want to save the changes?',
@@ -144,6 +170,20 @@ if (this.authService.getUser.TipoUsuario == 'fisioterapeuta') {
         })
       } else if (result.isDenied) {
         Swal.fire('Changes are not saved', '', 'info')
+
+        this.formData.delete('id_fisio');
+        this.formData.delete('id_cliente');
+        this.formData.delete('fecha');
+        this.formData.delete('hora');
+        this.formData.delete('descripcion');
+        this.formData.delete('tipo_consulta');
+        this.formData.delete('estatus');
+        this.formData.delete('direccion');
+    
+        if (id_plan != '---Select a plan---') {
+          this.formData.delete('id_plan',id_plan);
+          console.log(id_plan)
+        }
       }
     })
 
@@ -228,7 +268,7 @@ if (this.authService.getUser.TipoUsuario == 'fisioterapeuta') {
         Swal.fire('Accion realizada con exito!', '', 'success')
         if (this.authService.getUser.TipoUsuario == 'fisioterapeuta') {
           this.citasService.uptdCitaFisio(this.data.id_cita,this.formData).subscribe(r =>{
-          console.log('bien2');
+          // console.log('bien2');
           
             // //console.log(r)
             if (!r.error) {
@@ -244,7 +284,7 @@ if (this.authService.getUser.TipoUsuario == 'fisioterapeuta') {
               formdataMsgActF.append('correoRem',this.authService.getUser.correo);
               
               this.mailService.MessageAcptFisio(formdataMsgActF).subscribe( (r) =>{
-               console.log(r);
+              //  console.log(r);
               })
               setTimeout(location.reload.bind(location), 1300);
             }
@@ -265,7 +305,7 @@ if (this.authService.getUser.TipoUsuario == 'fisioterapeuta') {
               formdataMsgActC.append('correoRem',this.authService.getUser.correo);
               
               this.mailService.MessageAcptClient(formdataMsgActC).subscribe( (r) =>{
-               console.log(r);
+              //  console.log(r);
               })
               setTimeout(location.reload.bind(location), 1300);
             }
@@ -337,6 +377,20 @@ if (this.authService.getUser.TipoUsuario == 'fisioterapeuta') {
   ModalOpenCliente(contenidoC:any){
     this.modalC.open(contenidoC,{centered:true})
 
+  }
+
+
+  chat(){
+    // this.chatComponent.setUsuario(this.data.id_cliente);
+    this.chatService.setUsuario = this.data.usuario;
+    this.router.navigateByUrl(INTERNAL_ROUTES.MODULO_CHAT);
+  }
+
+
+  chatC(){
+    // this.chatComponent.setUsuario(this.data.id_cliente);
+    this.chatService.setUsuario = this.dataC.usuario;
+    this.router.navigateByUrl(INTERNAL_ROUTES.MODULO_CHAT);
   }
 
 }
