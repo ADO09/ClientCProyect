@@ -2,7 +2,7 @@ export const ROUTES_PATHS = {
     //AUTENTIFICACION
     AUTH:{
         DEFAULT:'auth',
-        LOGIN:'login'
+        LOGIN:'https://clientcproyect-gt3t2yn3w-ado09.vercel.app/login'
     },
     //PANELES
     PANEL:{
